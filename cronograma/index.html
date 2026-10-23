@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Cronograma · Fundamentos do Python I</title>
+<meta name="description" content="Cronograma dos encontros do curso Fundamentos do Python I, Senac Jaraguá do Sul, 2026.">
+<script src="../assets/js/tema.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/navegacao.css">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<!-- ============ barra fixa do topo, igual à do índice ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-linha">
+      <div class="brand"><span class="dot"></span><span class="brand-nome"><span class="brand-longo">Fundamentos do </span>Python I</span></div>
+
+      <nav class="abas" aria-label="Páginas do curso">
+        <a href="../index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <span>Slides<span class="aba-longo"> dos encontros</span></span>
+        </a>
+        <a href="index.html" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <span>Cronograma</span>
+        </a>
+      </nav>
+
+      <button class="btn-tema" id="btnTema" type="button" aria-label="Mudar tema" title="Mudar tema">
+        <svg class="ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+      </button>
+    </div>
+
+    <!-- só o cronograma tem filtros: ficam numa segunda linha, para a de cima ser igual nas duas páginas -->
+    <div class="filtros" role="group" aria-label="Destacar uma etapa">
+      <span class="filtros-rotulo">Destacar</span>
+      <div class="chips" id="filtros"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ capa ============ -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Senac Jaraguá do Sul · Aperfeiçoamento · 2026</p>
+    <h1>Fundamentos<br>do <em>Python I</em></h1>
+    <p class="lede">Dez encontros de 3 horas, de 23 de outubro a 28 de novembro de 2026, em sextas à noite e sábados de manhã. Cada quadrado colorido no calendário é um encontro.</p>
+
+    <div class="acoes">
+      <button class="btn-principal" id="btnHoje" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><circle class="pt" cx="12" cy="15.5" r="2"/></svg>
+        <span id="rotuloHoje">Ver hoje no calendário</span>
+      </button>
+      <p class="acoes-nota" id="notaHoje"></p>
+    </div>
+
+    <ul class="stats">
+      <li><b>30 h</b><span>Carga horária</span></li>
+      <li><b>10</b><span>Encontros</span></li>
+      <li><b>2</b><span>Faltas no máximo</span></li>
+      <li><b id="stProg">0/10</b><span>Já realizados</span></li>
+      <li><b id="stHoje">livre</b><span>Hoje</span></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ trilha ============ -->
+<section class="trilha-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>A trilha do curso</h2>
+        <p>Cada barra é um encontro, na ordem em que acontece. A cor mostra a etapa.</p>
+      </div>
+    </div>
+    <div class="trilha" id="trilha"></div>
+  </div>
+</section>
+
+<!-- ============ etapas ============ -->
+<section class="etapas-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>As etapas</h2>
+        <p>Toque em uma etapa para destacá-la no calendário.</p>
+      </div>
+    </div>
+    <div class="grade-etapas" id="gradeEtapas"></div>
+  </div>
+</section>
+
+<!-- ============ calendário ============ -->
+<section class="cal" id="calendario">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Calendário</h2>
+        <p>Sexta, das 19h às 22h. Sábado, das 9h às 12h.</p>
+      </div>
+    </div>
+    <div class="meses" id="meses"></div>
+    <div class="legenda">
+      <span><i class="am" style="--c:var(--logica)"></i> dia de aula</span>
+      <span><i class="ou"></i> encontro com o professor Diego Guerra</span>
+      <span><i class="av"></i> recuperação ou avaliação final</span>
+      <span><i class="pa"></i> feriado</span>
+      <span><i class="ho"></i> hoje</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ marcos ============ -->
+<section class="marcos">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Datas que não podem passar batido</h2></div></div>
+    <div class="grade-marcos" id="marcos"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>As datas ficam em <code>assets/js/aulas.js</code>, o mesmo arquivo do índice dos slides. Docente: Daniel.</span>
+    <span>30 horas · frequência mínima de 75%</span>
+  </div>
+</footer>
+
+<!-- ============ barra de detalhe do dia ============ -->
+<div class="detalhe" id="detalhe" role="status" aria-live="polite">
+  <span class="faixa"></span>
+  <div class="txt">
+    <p class="dt" id="dData"></p>
+    <p class="tt" id="dTitulo"></p>
+    <p class="sb" id="dSub"></p>
+  </div>
+  <button id="dFechar" type="button" aria-label="Fechar detalhe">×</button>
+</div>
+
+<script src="../assets/js/aulas.js"></script>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

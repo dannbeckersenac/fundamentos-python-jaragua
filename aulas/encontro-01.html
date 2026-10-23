@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 01 · A linguagem Python e o IDLE · Fundamentos do Python I</title>
+<link rel="stylesheet" href="../assets/css/slides.css">
+<link rel="stylesheet" href="../assets/css/encontro.css">
+</head>
+<body data-encontro="1">
+<div class="palco">
+
+<!-- ===================== ABERTURA ===================== -->
+
+<!-- 1 · CAPA -->
+<section class="slide capa">
+  <img class="logo" src="../assets/img/senac.png" alt="Senac">
+  <div class="corpo">
+    <p class="numero">Encontro 01</p>
+    <h1>A linguagem Python e o IDLE</h1>
+    <p class="sub">Abertura do curso, um pouco de história e o seu primeiro programa.</p>
+  </div>
+  <img class="python" src="../assets/img/python-logo.svg" alt="">
+  <div class="rodape"><span>Etapa 1 · O ambiente</span><span>Fundamentos do Python I · Senac Jaraguá do Sul</span></div>
+</section>
+
+<!-- 2 · BOAS-VINDAS -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="gif-lado">
+        <div>
+          <h2>Boas-vindas!</h2>
+          <p class="intro">Que bom ter vocês aqui.</p>
+          <p class="intro">Em dez encontros, a gente sai do zero e chega num sistema de pedidos que roda no seu computador. Feito por você.</p>
+        </div>
+        <img src="../assets/img/fotos/boas-vindas.gif" alt="Gatinho pulando de alegria">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 3 · QUEM SOU EU -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="perfil">
+        <img src="../assets/img/fotos/daniel.jpg" alt="Foto do professor Daniel">
+        <div>
+          <p class="nome">Daniel Becker Bortoluzzi</p>
+          <p>Formado em Sistemas de Informação pelo Instituto Federal Catarinense, com especialização em Engenharia de Software.</p>
+          <p>Diretor de Tecnologia do Laboratório de Pesquisa, Desenvolvimento e Inovação em IA Generativa do Centro Inovação Blumenau. Professor de Python e IA no Senac Blumenau.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 4 · TRAJETÓRIA, PARTE 1 -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Como eu cheguei aqui</h2>
+    <div class="miolo">
+      <div class="tempo n4">
+        <figure><span class="ano">2008</span><img src="../assets/img/fotos/primeiro-pc.png" alt=""><span class="t">Primeiro PC</span><span class="d">e muita curiosidade</span></figure>
+        <figure><span class="ano">2014</span><span class="com-fogo"><img src="../assets/img/icones/fonte-pc.png" alt=""><span class="fogo" aria-hidden="true">🔥</span></span><span class="t">Manutenção de computadores</span><span class="d">algumas fontes queimadas</span></figure>
+        <figure><span class="ano">2018</span><img src="../assets/img/icones/cabeca-ideias.png" alt=""><span class="t">Faculdade</span><span class="d">e o primeiro emprego numa empresa</span></figure>
+        <figure><span class="ano">2019</span><img src="../assets/img/icones/trofeu-codigo.png" alt=""><span class="t">Hackathons</span><span class="d">projetos de extensão e artigos</span></figure>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 5 · TRAJETÓRIA, PARTE 2 -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E depois da faculdade</h2>
+    <div class="miolo">
+      <div class="tempo n4">
+        <figure><span class="ano">2022</span><img src="../assets/img/icones/dev-codigo.png" alt=""><span class="t">Desenvolvedor back-end</span><span class="d">na Lizard TI</span></figure>
+        <figure><span class="ano">2023</span><img src="../assets/img/icones/lideranca.png" alt=""><span class="t">Tech lead</span><span class="d">liderando o time</span></figure>
+        <figure><span class="ano">2024</span><img src="../assets/img/icones/acordo.png" alt=""><span class="t">CTO</span><span class="d">parte comercial e empreender</span></figure>
+        <figure><span class="ano">2025</span><img src="../assets/img/icones/comemoracao.png" alt=""><span class="t">Professor</span><span class="d">aqui no Senac</span></figure>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 6 · O LABORATÓRIO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Onde eu trabalho hoje</h2>
+    <p class="intro">No laboratório de IA generativa do Centro de Inovação Blumenau, a gente desenvolve projetos de inteligência artificial para empresas.</p>
+    <div class="fotos">
+      <img src="../assets/img/fotos/lab-1.jpg" alt="Entrada do laboratório">
+      <img src="../assets/img/fotos/lab-2.jpg" alt="Painel do laboratório">
+      <img src="../assets/img/fotos/lab-3.jpg" alt="Sala do laboratório">
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 7 · RODA DE APRESENTAÇÃO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Agora é a vez de vocês</h2>
+    <div class="miolo">
+      <div class="lado-icone esq">
+        <img src="../assets/img/icones/conversa.png" alt="">
+        <ul class="lista">
+          <li>Seu nome</li>
+          <li>Se trabalha, em qual área</li>
+          <li>Já teve contato com programação?</li>
+          <li>Por que se inscreveu no curso</li>
+          <li>O que espera levar daqui</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 8 · CONSELHOS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Quatro conselhos antes de começar</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <ul class="lista">
+          <li><b>Faça o que você gosta.</b> Se ainda não sabe o que é, experimente sem medo de perder tempo.</li>
+          <li><b>Pratique fora da aula.</b> Programação se aprende digitando.</li>
+          <li><b>Converse com os colegas.</b> Muita dúvida se resolve na cadeira do lado.</li>
+          <li><b>Não se frustre com o erro.</b> O Python vai reclamar bastante, e é assim que se aprende.</li>
+        </ul>
+        <img src="../assets/img/icones/caminho.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 9 · O CURSO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O que vamos fazer em 30 horas</h2>
+    <p class="intro">Dez encontros, divididos em cinco etapas.</p>
+    <div class="miolo">
+      <div class="icones n5">
+        <figure><img src="../assets/img/icones/notebook-codigo.png" alt=""><span class="t">O ambiente</span><span class="d">instalar e usar o Python</span></figure>
+        <figure><img src="../assets/img/icones/lampada.png" alt=""><span class="t">A lógica</span><span class="d">transformar um problema em passos</span></figure>
+        <figure><img src="../assets/img/icones/pessoa-duvida.png" alt=""><span class="t">As decisões</span><span class="d">o programa escolhe o caminho</span></figure>
+        <figure><img src="../assets/img/icones/engrenagens.png" alt=""><span class="t">A repetição</span><span class="d">fazer de novo sem reescrever</span></figure>
+        <figure><img src="../assets/img/icones/cardapio.png" alt=""><span class="t">O sistema de pedidos</span><span class="d">juntar tudo num programa</span></figure>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 10 · O FIO CONDUTOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Um exemplo do começo ao fim</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Em todos os encontros, o exemplo é o mesmo: uma lanchonete, com cardápio e pedidos.</p>
+          <ul class="lista">
+            <li>Hoje: mostrar o cardápio na tela</li>
+            <li>Depois: calcular o total do pedido</li>
+            <li>Mais adiante: dar desconto e cobrar a entrega</li>
+            <li>No fim: um sistema de pedidos feito por você</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/restaurante.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 11 · COMBINADOS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Combinados</h2>
+    <div class="miolo">
+      <div class="cartoes n3">
+        <div class="cartao"><img src="../assets/img/icones/calendario-ok.png" alt=""><span class="t">Frequência</span><span class="d">Você pode faltar no máximo 2 encontros. A terceira falta reprova.</span></div>
+        <div class="cartao"><img src="../assets/img/icones/avaliacao.png" alt=""><span class="t">Avaliação</span><span class="d">Cada atividade recebe A, PA ou NA. No fim, o resultado é concluiu ou não concluiu.</span></div>
+        <div class="cartao"><img src="../assets/img/icones/checklist.png" alt=""><span class="t">Ticket de saída</span><span class="d">Todo encontro termina com um exercício curto, entregue antes de ir embora.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 1 · SOFTWARE E PYTHON ===================== -->
+
+<!-- 12 · PERGUNTA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/duvida.png" alt="">
+        <div>
+          <p>Qual aplicativo você mais usa no dia a dia?</p>
+          <p>WhatsApp, o app do banco, Instagram, o mapa do celular.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 13 · O QUE É SOFTWARE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Tudo isso é software</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Software é um conjunto de instruções que diz ao computador o que fazer, como fazer e quando fazer.</p>
+          <p class="destaque">O celular é o hardware: a parte que você pode tocar. O aplicativo é o software, as instruções que rodam nele.</p>
+        </div>
+        <img src="../assets/img/icones/engrenagens.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 14 · RECEITA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Um programa é uma receita</h2>
+    <div class="miolo">
+      <div class="lado-icone esq">
+        <img src="../assets/img/icones/bolo.png" alt="">
+        <div>
+          <ul class="lista">
+            <li><b>Ingredientes:</b> os dados que entram</li>
+            <li><b>Modo de preparo:</b> os passos, na ordem certa</li>
+            <li><b>O bolo:</b> o resultado que sai</li>
+          </ul>
+          <p class="intro" style="margin-top: 26px">Seguindo a receita direitinho, o bolo sai igual toda vez. Com programa é a mesma coisa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 15 · LINGUAGEM -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E quem escreve a receita?</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">O computador só entende números: zeros e uns. A gente entende português.</p>
+          <p class="intro">A linguagem de programação fica no meio do caminho. É um jeito de escrever que a gente consegue ler e o computador consegue executar.</p>
+        </div>
+        <img src="../assets/img/icones/programador.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 16 · JAVA E PYTHON -->
+<section class="slide">
+  <div class="corpo">
+    <h2>A mesma mensagem em duas linguagens</h2>
+    <div class="miolo">
+      <div class="comparacao">
+        <div class="lado">
+          <span class="rotulo">Em Java</span>
+          <div class="codigo idle">
+            <div class="arquivo">Ola.java</div>
+<pre><span class="kw">public class</span> Ola {
+    <span class="kw">public static void</span> main(String[] args) {
+        System.out.println(<span class="str">"Olá!"</span>);
+    }
+}</pre>
+          </div>
+        </div>
+        <div class="lado">
+          <span class="rotulo">Em Python</span>
+          <div class="codigo idle">
+            <div class="arquivo">ola.py</div>
+<pre><span class="fn">print</span>(<span class="str">"Olá!"</span>)</pre>
+          </div>
+        </div>
+      </div>
+      <p class="intro">As duas mostram <code>Olá!</code> na tela. Em Python você escreve só o que importa.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 17 · HISTÓRIA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>De onde veio o Python</h2>
+    <div class="miolo">
+      <div class="tempo n4">
+        <figure><span class="ano">1989</span><img src="../assets/img/icones/cabeca-ideias.png" alt=""><span class="t">Guido van Rossum</span><span class="d">começa o projeto num fim de ano, na Holanda</span></figure>
+        <figure><span class="ano">1991</span><img src="../assets/img/icones/tela-codigo.png" alt=""><span class="t">Primeira versão</span><span class="d">aberta para quem quisesse usar</span></figure>
+        <figure><span class="ano">2008</span><img src="../assets/img/icones/historico.png" alt=""><span class="t">Python 3</span><span class="d">a versão que usamos até hoje</span></figure>
+        <figure><span class="ano">hoje</span><img src="../assets/img/icones/crescimento.png" alt=""><span class="t">Entre as mais usadas</span><span class="d">no mundo inteiro</span></figure>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 18 · O NOME -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E o nome?</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Não vem da cobra.</p>
+          <p class="intro">O Guido era fã do Monty Python, um grupo de comédia inglês dos anos 70. A cobra só entrou depois, no logo.</p>
+        </div>
+        <img src="../assets/img/python-logo.svg" alt="Logo do Python">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 19 · CARACTERÍSTICAS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Por que tanta gente usa Python</h2>
+    <div class="miolo">
+      <div class="icones n4">
+        <figure><img src="../assets/img/icones/lupa-info.png" alt=""><span class="t">Fácil de ler</span><span class="d">o código lembra frases em inglês</span></figure>
+        <figure><img src="../assets/img/icones/acordo.png" alt=""><span class="t">Gratuito</span><span class="d">baixa e usa sem pagar nada</span></figure>
+        <figure><img src="../assets/img/icones/ideia-encaixe.png" alt=""><span class="t">Serve para muita coisa</span><span class="d">do script pequeno ao sistema grande</span></figure>
+        <figure><img src="../assets/img/icones/colegas.png" alt=""><span class="t">Comunidade grande</span><span class="d">sempre tem alguém que já teve a sua dúvida</span></figure>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 20 · ONDE ESTÁ -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Onde o Python aparece</h2>
+    <div class="miolo">
+      <div class="icones n4">
+        <figure><img src="../assets/img/icones/cabeca-ia.png" alt=""><span class="t">Inteligência artificial</span></figure>
+        <figure><img src="../assets/img/icones/grafico.png" alt=""><span class="t">Análise de dados</span></figure>
+        <figure><img src="../assets/img/icones/robo.png" alt=""><span class="t">Automação de tarefas</span></figure>
+        <figure><img src="../assets/img/icones/tela-codigo.png" alt=""><span class="t">Sistemas web</span></figure>
+      </div>
+      <p class="intro" style="margin-top: 36px">Google, Netflix, Spotify, Uber e Amazon usam Python. E ele está no topo dos rankings de linguagens mais usadas há alguns anos.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 21 · PRÁTICA DO CICLO 1 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Um aplicativo que você usa</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt">Escolha um aplicativo que você usa toda semana.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt">Que problema ele resolve para você?</span></div>
+        <div class="tarefa"><span class="n">3</span><span class="txt">Como seria a sua semana sem ele?</span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt">Conte para quem senta ao seu lado, e escute o aplicativo dele.</span></div>
+      </div>
+      <p class="dica">No fim, três pessoas contam para a turma.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 22 · INTERVALO -->
+<section class="slide escuro intervalo">
+  <div class="corpo">
+    <h2>Intervalo</h2>
+    <p class="intro">Voltamos às 20h30. Na volta, o computador fica ligado.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 2 · DO TEXTO AO PROGRAMA ===================== -->
+
+<!-- 23 · CÓDIGO-FONTE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O que você escreve tem nome</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro"><b>Código-fonte</b> é o texto do programa, escrito numa linguagem como o Python.</p>
+          <p class="intro">Em Python, ele fica num arquivo que termina em <code>.py</code>, como <code>cardapio.py</code>.</p>
+          <p class="destaque">O computador não lê esse texto direto. Alguém precisa traduzir.</p>
+        </div>
+        <img src="../assets/img/icones/notebook-codigo.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 24 · COMPILADOR E INTERPRETADOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Dois jeitos de traduzir</h2>
+    <div class="miolo">
+      <div class="cartoes n2">
+        <div class="cartao"><img src="../assets/img/icones/livro-certo-errado.png" alt=""><span class="t">Compilador</span><span class="d">Como a tradução de um livro: traduz tudo antes, e só depois alguém lê. Se uma frase está errada, o livro não sai.</span></div>
+        <div class="cartao"><img src="../assets/img/icones/conversa-setas.png" alt=""><span class="t">Interpretador</span><span class="d">Como o intérprete de uma palestra: traduz frase por frase, na hora. Se ele trava numa frase, o que veio antes já foi dito.</span></div>
+      </div>
+      <p class="destaque">O Python é <b>interpretado</b>: lê e executa uma linha de cada vez. Daqui a pouco você vê isso acontecer na tela.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 25 · INSTALAR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Instalando o Python</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>No navegador, abra <b>python.org</b> e entre em <b>Downloads</b>.</li>
+        <li>Baixe a versão mais nova para Windows e abra o instalador.</li>
+        <li>Se aparecer a caixa <b>Add python.exe to PATH</b>, marque.</li>
+        <li>Clique em <b>Install Now</b> e espere terminar.</li>
+        <li>No menu Iniciar, procure <b>IDLE</b>. Se ele aparece, deu certo.</li>
+      </ol>
+      <p class="dica">Nos computadores do laboratório o Python pode já estar instalado. Nesse caso, vá direto ao passo 5.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 26 · AS DUAS JANELAS DO IDLE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Conhecendo o IDLE</h2>
+    <p class="intro">O IDLE vem junto com o Python. É onde você vai escrever e rodar seus programas, e ele tem duas janelas.</p>
+    <div class="miolo">
+      <div class="janelas">
+        <div>
+          <p class="legenda-janela"><b>Shell:</b> testa uma linha e responde na hora.</p>
+          <div class="codigo idle shell">
+            <div class="arquivo">IDLE Shell</div>
+<pre><span class="pr">&gt;&gt;&gt; </span>2 + 3
+<span class="saida">5</span>
+<span class="pr">&gt;&gt;&gt; </span></pre>
+          </div>
+        </div>
+        <div>
+          <p class="legenda-janela"><b>Editor:</b> guarda o programa inteiro num arquivo.</p>
+          <div class="codigo idle shell">
+            <div class="arquivo">ola.py</div>
+<pre><span class="fn">print</span>(<span class="str">"Olá!"</span>)
+<span class="fn">print</span>(<span class="str">"Tudo bem?"</span>)
+</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 27 · CONFIGURAR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Deixe o ambiente do seu jeito</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>No IDLE, abra o menu <b>Options › Configure IDLE</b>.</li>
+        <li>Na aba <b>Fonts</b>, mude o tamanho para <b>16</b>.</li>
+        <li>Clique em <b>OK</b> e veja a letra do shell crescer.</li>
+        <li>No Explorador de Arquivos, abra <b>Documentos</b> e crie a pasta <code>python-curso</code>.</li>
+      </ol>
+      <p class="dica">Tudo o que você fizer no curso vai para essa pasta. Programa salvo em qualquer lugar se perde.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 28 · PRIMEIRA CONVERSA NO SHELL -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Primeira conversa com o Python</h2>
+    <div class="miolo">
+      <div class="codigo idle shell">
+        <div class="arquivo">IDLE Shell</div>
+<pre><span class="pr">&gt;&gt;&gt; </span><span class="fn">print</span>(<span class="str">"Olá, mundo!"</span>)
+<span class="saida">Olá, mundo!</span></pre>
+      </div>
+      <ol class="passos">
+        <li>No shell, logo depois do <code>&gt;&gt;&gt;</code>, digite <code>print("Olá, mundo!")</code>.</li>
+        <li>Aperte <b>Enter</b>.</li>
+        <li>Confira a resposta em azul, logo embaixo: <code>Olá, mundo!</code></li>
+        <li>Troque o texto entre as aspas pelo seu nome e rode de novo.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 29 · O PRINT POR DENTRO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O que tem dentro dessa linha</h2>
+    <div class="miolo">
+      <div class="codigo idle shell">
+<pre><span class="fn">print</span>(<span class="str">"Olá, mundo!"</span>)</pre>
+      </div>
+      <ul class="lista">
+        <li><code>print</code> é o comando que mostra alguma coisa na tela.</li>
+        <li>Os parênteses guardam o que vai ser mostrado.</li>
+        <li>As aspas avisam: isto é texto, mostre do jeito que está.</li>
+        <li><code>Olá, mundo!</code> é o texto. Pode ser qualquer frase.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 30 · COM ASPAS E SEM ASPAS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Com aspas e sem aspas</h2>
+    <p class="intro">Antes de rodar, tente adivinhar o que aparece em cada linha.</p>
+    <div class="miolo">
+      <div class="janelas">
+        <div class="codigo idle shell">
+          <div class="arquivo">IDLE Shell</div>
+<pre><span class="pr">&gt;&gt;&gt; </span><span class="fn">print</span>(<span class="str">"2 + 3"</span>)
+<span class="saida">2 + 3</span>
+<span class="pr">&gt;&gt;&gt; </span><span class="fn">print</span>(2 + 3)
+<span class="saida">5</span></pre>
+        </div>
+        <div>
+          <p class="intro">Entre aspas, o Python mostra o texto do jeito que está.</p>
+          <p class="intro">Sem aspas, ele faz a conta e mostra o resultado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 31 · PRIMEIRO ARQUIVO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Agora num arquivo</h2>
+    <div class="codigo idle">
+      <div class="arquivo">ola.py</div>
+<pre><span class="com"># meu primeiro programa</span>
+<span class="fn">print</span>(<span class="str">"Olá, mundo!"</span>)
+<span class="fn">print</span>(<span class="str">"Estou aprendendo Python."</span>)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>No IDLE, abra <b>File › New File</b>.</li>
+      <li>Digite as três linhas.</li>
+      <li>Salve com <b>Ctrl+S</b>, dentro de <code>python-curso</code>, com o nome <code>ola.py</code>.</li>
+      <li>Rode com <b>F5</b>.</li>
+      <li>Confira no shell as duas frases. A linha do <code>#</code> não aparece.</li>
+    </ol>
+    <p class="dica">A linha que começa com <code>#</code> é um <b>comentário</b>. O Python ignora, e ela serve para você explicar o código.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 32 · OS DOIS ERROS MAIS COMUNS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Quando o Python reclama</h2>
+    <p class="intro">Erro faz parte. Leia sempre a última linha vermelha: é ali que ele diz o que aconteceu.</p>
+    <div class="miolo">
+      <div class="comparacao">
+        <div class="lado">
+          <span class="rotulo">Faltou fechar as aspas</span>
+          <div class="codigo idle shell">
+<pre><span class="fn">print</span>(<span class="str">"Olá, mundo!)</span>
+<span class="erro">SyntaxError: unterminated string literal</span></pre>
+          </div>
+        </div>
+        <div class="lado">
+          <span class="rotulo">Print com P maiúsculo</span>
+          <div class="codigo idle shell">
+<pre>Print(<span class="str">"Olá, mundo!"</span>)
+<span class="erro">NameError: name 'Print' is not defined.</span></pre>
+          </div>
+        </div>
+      </div>
+      <p class="dica">No segundo caso, ele ainda pergunta: <code>Did you mean: 'print'?</code> Quer dizer "você quis dizer print?".</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 33 · INTERPRETADO NA PRÁTICA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>As duas primeiras linhas rodaram antes do erro</h2>
+    <div class="codigo idle">
+      <div class="arquivo">teste.py</div>
+<pre><span class="fn">print</span>(<span class="str">"Bem-vindo à lanchonete!"</span>)
+<span class="fn">print</span>(<span class="str">"Hoje tem pastel."</span>)
+Print(<span class="str">"Bom apetite!"</span>)</pre>
+    </div>
+    <div class="codigo idle shell compacto">
+      <div class="arquivo">IDLE Shell, depois do F5</div>
+<pre><span class="saida">Bem-vindo à lanchonete!</span>
+<span class="saida">Hoje tem pastel.</span>
+<span class="erro">Traceback (most recent call last):</span>
+<span class="erro">  File "C:\Users\aluno\Documents\python-curso\teste.py", line 3</span>
+<span class="erro">    Print("Bom apetite!")</span>
+<span class="erro">NameError: name 'Print' is not defined. Did you mean: 'print'?</span></pre>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 34 · PRÁTICA DO CICLO 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 15 minutos</p>
+    <h2>Seu cartão de apresentação</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt">Crie o arquivo <code>apresentacao.py</code> na pasta <code>python-curso</code>.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt">Mostre seu nome, sua cidade e o que espera do curso, com um <code>print</code> para cada.</span></div>
+        <div class="tarefa"><span class="n">3</span><span class="txt">No topo, escreva um comentário dizendo o que o programa faz.</span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt">Apague uma aspa de propósito, rode e leia a última linha do erro. Depois conserte.</span></div>
+      </div>
+      <p class="dica">Na correção, dois colegas mostram o programa no projetor.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== DESAFIO, TICKET E RECAPITULAÇÃO ===================== -->
+
+<!-- 35 · O CARDÁPIO DO PROFESSOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O cardápio da lanchonete</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · cardapio.py</div>
+<pre><span class="com"># cardápio da lanchonete do professor</span>
+<span class="fn">print</span>(<span class="str">"===== LANCHONETE DO PROFESSOR ====="</span>)
+<span class="fn">print</span>()
+<span class="fn">print</span>(<span class="str">"1 - Pastel de carne ......... R$ 8,50"</span>)
+<span class="fn">print</span>(<span class="str">"2 - Pastel de queijo ........ R$ 8,00"</span>)
+<span class="fn">print</span>(<span class="str">"3 - Caldo de cana ........... R$ 6,00"</span>)
+<span class="fn">print</span>()
+<span class="fn">print</span>(<span class="str">"Faça o seu pedido no balcão!"</span>)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>Crie o arquivo <code>cardapio.py</code> e digite o código.</li>
+      <li>Rode com <b>F5</b>.</li>
+      <li>Confira o cardápio no shell. Cada <code>print()</code> vazio virou uma linha em branco.</li>
+    </ol>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 36 · DESAFIO -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Desafio · 45 minutos</p>
+    <h2>O cardápio da sua lanchonete</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt">Invente uma lanchonete e dê um nome para ela.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt">Mostre pelo menos cinco itens, cada um com o preço.</span></div>
+        <div class="tarefa"><span class="n">3</span><span class="txt">Separe as partes com linhas em branco e uma linha de enfeite, como <code>=====</code>.</span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt">Termine com uma frase para o cliente e ponha um comentário no topo.</span></div>
+      </div>
+      <p class="dica">Por enquanto o preço é só texto, e o Python não sabe somar <code>R$ 8,50</code>. Isso muda na etapa da lógica.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 37 · TICKET DE SAÍDA -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Ticket de saída · 15 minutos</p>
+    <h2>Antes de ir embora</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Salve o seu cardápio como <code>ticket01_seunome.py</code>.</li>
+        <li>No topo, escreva num comentário: qual a diferença entre o shell e o editor?</li>
+        <li>Rode com <b>F5</b> e confira que não aparece nada em vermelho.</li>
+        <li>Entregue o arquivo do jeito que o professor indicar.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 38 · RECAPITULAÇÃO -->
+<section class="slide escuro">
+  <div class="corpo">
+    <h2>O que fica de hoje</h2>
+    <ul class="recap">
+      <li>Software é <b>instrução</b>: diz ao computador o que fazer, como e quando.</li>
+      <li>O Python nasceu em 1989 e hoje está em <b>IA, dados, automação e web</b>.</li>
+      <li>O Python é <b>interpretado</b>: executa uma linha de cada vez.</li>
+      <li>No IDLE, o <b>shell</b> testa uma linha e o <b>editor</b> guarda o programa num <code>.py</code>.</li>
+      <li><code>print</code> mostra na tela, texto vai <b>entre aspas</b> e erro se lê pela última linha.</li>
+    </ul>
+    <p class="proximo"><b>Amanhã, às 9h:</b> algoritmo, fluxograma e um programa que pergunta coisas ao usuário.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+</div>
+<nav class="barra" id="barra"></nav>
+<script src="../assets/js/aulas.js"></script>
+<script src="../assets/js/slides.js"></script>
+</body>
+</html>

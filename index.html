@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Fundamentos do Python I · Encontros</title>
+<script src="assets/js/tema.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/navegacao.css">
+<style>
+  /* só o que é do índice; barra, capa e tema vêm de navegacao.css */
+  .docente { background: #4F46E5; color: #FFFFFF; font: 400 13px/1.4 var(--mono); }
+  .docente .wrap { display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+                   justify-content: space-between; padding-top: 10px; padding-bottom: 10px; }
+  .docente a { color: #FFFFFF; }
+
+  .aulas-sec { padding: 44px 0 0; }
+  .etapas { max-width: 900px; }
+  .etapa { margin-top: 28px; }
+  .etapa-cab { border-left: 3px solid var(--roxo); padding-left: 14px; margin-bottom: 14px; }
+  .etapa-tag { display: block; margin-bottom: 8px; font: 700 10.5px/1 var(--mono);
+               letter-spacing: .12em; text-transform: uppercase; color: var(--roxo); }
+  .etapa-cab .guia { margin: 4px 0 0; color: var(--suave); font-size: 14px; font-style: italic; }
+
+  ul.aulas { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .aula { display: grid; grid-template-columns: 48px 86px 1fr auto; gap: 16px; align-items: center;
+          background: var(--painel); border: 1px solid var(--linha); border-radius: var(--r);
+          padding: 12px 16px; text-decoration: none; color: inherit;
+          transition: border-color .15s, background .15s, transform .15s; }
+  a.aula:hover { border-color: var(--acento); background: var(--painel-2); transform: translateY(-1px); }
+  .aula .n { font: 700 13px/1 var(--mono); color: var(--sobre-acento); background: var(--acento);
+             border-radius: 8px; padding: 9px 0; text-align: center; }
+  .aula.aval .n { background: var(--vermelho); color: #FFFFFF; }
+  .aula.indisponivel { opacity: .62; }
+  .aula.indisponivel .n { background: var(--painel-2); color: var(--suave); }
+  .aula.indisponivel.aval .n { color: var(--vermelho); }
+  .aula .data { font: 400 13px/1 var(--mono); color: var(--suave-2); font-variant-numeric: tabular-nums; }
+  .aula .t { font-family: var(--display); font-weight: 500; font-size: 16.5px; letter-spacing: -.01em; line-height: 1.3; }
+  .aula .t small { display: block; margin-top: 4px; font: 400 12px/1.3 var(--mono); color: var(--suave-2); letter-spacing: 0; }
+  .aula .estado { font: 400 10.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--suave-2); }
+  .aula .estado.ok { color: var(--acento); font-weight: 700; }
+  .aula .estado.trancado { color: var(--roxo); font-weight: 700; }
+
+  /* combinados da turma: frequência, menções e horários */
+  .combinados-sec { padding: 46px 0 0; }
+  .combinados { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+  .combinado { border: 1px solid var(--linha); border-radius: var(--r); padding: 16px 18px; background: var(--painel); }
+  .combinado h3 { margin: 0 0 8px; font: 600 12px/1 var(--corpo); letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }
+  .combinado p { margin: 0; font-size: 14.2px; line-height: 1.55; }
+  .combinado b { font-weight: 600; }
+
+  @media (max-width: 620px) {
+    .aula { grid-template-columns: 44px 1fr auto; grid-template-areas: "n t t" "n data estado";
+            row-gap: 6px; column-gap: 14px; }
+    .aula .n { grid-area: n; align-self: start; }
+    .aula .t { grid-area: t; }
+    .aula .data { grid-area: data; font-size: 11.5px; }
+    .aula .estado { grid-area: estado; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ barra fixa do topo, igual à do cronograma ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar-linha">
+      <div class="brand"><span class="dot"></span><span class="brand-nome"><span class="brand-longo">Fundamentos do </span>Python I</span></div>
+
+      <nav class="abas" aria-label="Páginas do curso">
+        <a href="index.html" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg>
+          <span>Slides<span class="aba-longo"> dos encontros</span></span>
+        </a>
+        <a href="cronograma/index.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <span>Cronograma</span>
+        </a>
+      </nav>
+
+      <button class="btn-tema" id="btnTema" type="button" aria-label="Mudar tema" title="Mudar tema">
+        <svg class="ico-lua" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ico-sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="docente" id="avisoDocente" hidden>
+  <div class="wrap">
+    <span>Modo docente: todos os encontros visíveis, sem esperar a data.</span>
+    <a href="index.html?docente=0">sair do modo docente</a>
+  </div>
+</div>
+
+<!-- ============ capa ============ -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Senac Jaraguá do Sul · Aperfeiçoamento · Presencial</p>
+    <h1>Fundamentos<br>do <em>Python I</em></h1>
+    <p class="lede">Dez encontros de 3 horas, em sextas à noite e sábados de manhã, no laboratório. Você sai daqui escrevendo programas em Python que recebem dados, decidem, repetem e mostram o resultado. O fio condutor é um cardápio digital que emite pedidos, e o curso fecha com um sistema de pedidos no terminal feito por você.</p>
+
+    <div class="acoes">
+      <a class="btn-principal" id="botao" href="#" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4M10.5 8.2v4.6l3.8-2.3z"/></svg>
+        <span id="rotulo">Abrir o último encontro liberado</span>
+      </a>
+      <p class="acoes-nota" id="nota"></p>
+    </div>
+
+    <ul class="stats">
+      <li><b>30 h</b><span>Carga horária</span></li>
+      <li><b>10</b><span>Encontros</span></li>
+      <li><b>5</b><span>Etapas</span></li>
+      <li><b id="liberados">0/10</b><span>Encontros liberados</span></li>
+      <li><b id="proximo">fim</b><span>Próximo encontro</span></li>
+    </ul>
+  </div>
+</header>
+
+<section class="aulas-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Os encontros</h2>
+        <p>Cada encontro abre na hora em que começa: 19h na sexta, 9h no sábado. Os slides navegam com as setas do teclado.</p>
+      </div>
+    </div>
+    <div class="etapas" id="lista"></div>
+  </div>
+</section>
+
+<section class="combinados-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>Combinados</h2></div></div>
+    <div class="combinados">
+      <div class="combinado">
+        <h3>Frequência</h3>
+        <p>O mínimo é 75% das 30 horas. Na prática, você pode faltar <b>no máximo 2 encontros</b>. A terceira falta reprova.</p>
+      </div>
+      <div class="combinado">
+        <h3>Avaliação</h3>
+        <p>Durante o curso, cada atividade recebe <b>A</b>, <b>PA</b> ou <b>NA</b>: atendido, parcialmente atendido, não atendido. No fim, o resultado é Concluiu ou Não concluiu.</p>
+      </div>
+      <div class="combinado">
+        <h3>Horários</h3>
+        <p>Sexta, das 19h às 22h, com intervalo das 20h15 às 20h30. Sábado, das 9h às 12h, com intervalo das 10h às 10h15.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>As datas e a regra de liberação ficam em <code>assets/js/aulas.js</code>. Ajuste ali e o índice e o cronograma acompanham.</span>
+    <span>Docente: Daniel Becker Bortoluzzi</span>
+  </div>
+</footer>
+
+<script src="assets/js/aulas.js"></script>
+<script>
+  (function () {
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    var agora = new Date();
+    var lista = window.ENCONTROS;
+    var endereco = function (a) { return "aulas/" + window.arquivoDoEncontro(a); };
+    var ehHoje = function (a) { return window.diaDoEncontro(a.data).toDateString() === agora.toDateString(); };
+    var hora = function (a) { return window.horarioDoEncontro(a).inicio + "h"; };
+
+    if (window.MODO_DOCENTE) document.getElementById("avisoDocente").hidden = false;
+
+    /* ---------- capa: botão do encontro e números ---------- */
+
+    var liberados = lista.filter(window.liberado);
+    var ultimo = liberados[liberados.length - 1];
+    /* no modo docente um encontro futuro já pode estar liberado: o próximo é o primeiro que ainda não está */
+    var proximo = lista.find(function (a) { return !window.liberado(a) && window.aberturaDoEncontro(a) > agora; });
+
+    document.getElementById("liberados").textContent = liberados.length + "/" + lista.length;
+    if (proximo) document.getElementById("proximo").textContent = window.dataCurta(proximo.data);
+
+    var quandoProximo = !proximo ? ""
+      : ehHoje(proximo)
+        ? "O encontro " + pad(proximo.n) + " abre hoje, às " + hora(proximo) + "."
+        : "O próximo abre em " + window.dataCurta(proximo.data) + ", às " + hora(proximo) + ".";
+
+    var nota = document.getElementById("nota");
+    if (ultimo) {
+      var botao = document.getElementById("botao");
+      botao.href = endereco(ultimo);
+      botao.hidden = false;
+      document.getElementById("rotulo").textContent = ehHoje(ultimo) ? "Abrir o encontro de hoje" : "Abrir o último encontro liberado";
+      nota.textContent = "Encontro " + pad(ultimo.n) + ", " + ultimo.titulo + ". " + quandoProximo;
+    } else {
+      nota.textContent = quandoProximo;
+    }
+
+    /* ---------- lista dos encontros ---------- */
+
+    /* o índice mostra duas coisas: o encontro está no ar, ou ainda não.
+       O que falta montar não se anuncia como falta, aparece como
+       "a liberar" igual aos demais. */
+    function estado(a) {
+      if (window.liberado(a)) return { cls: " ok", txt: "slides" };
+      if (ehHoje(a)) return { cls: " trancado", txt: "abre às " + hora(a) };
+      return { cls: "", txt: "a liberar" };
+    }
+
+    /* uma linha da lista: link se o encontro está no ar, caixa apagada se não */
+    function linha(a) {
+      var e = estado(a);
+      var aberto = window.liberado(a);
+      var cls = "aula" + (aberto ? "" : " indisponivel") + (a.avaliacao || a.recuperacao ? " aval" : "");
+      var sub = a.docente !== "daniel" ? "com o professor " + window.DOCENTES[a.docente] : "";
+      var conteudo =
+        '<span class="n">' + pad(a.n) + '</span>' +
+        '<span class="data">' + window.diaDaSemana(a.data) + ' ' + window.dataCurta(a.data) + '</span>' +
+        '<span class="t">' + a.titulo + (sub ? '<small>' + sub + '</small>' : '') + '</span>' +
+        '<span class="estado' + e.cls + '">' + e.txt + '</span>';
+      return aberto
+        ? '<li><a class="' + cls + '" href="' + endereco(a) + '">' + conteudo + '</a></li>'
+        : '<li><div class="' + cls + '">' + conteudo + '</div></li>';
+    }
+
+    document.getElementById("lista").innerHTML = window.ETAPAS.map(function (et) {
+      var itens = lista.filter(function (a) { return a.etapa === et.n; }).map(linha).join("");
+      return '<section class="etapa"><div class="etapa-cab"><span class="etapa-tag">Etapa ' + et.n +
+             ' · ' + et.encontros + '</span><h2>' + et.nome + '</h2><p class="guia">“' + et.guia +
+             '”</p></div><ul class="aulas">' + itens + '</ul></section>';
+    }).join("");
+  })();
+</script>
+
+</body>
+</html>

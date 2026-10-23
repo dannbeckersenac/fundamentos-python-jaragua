@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modelo de encontro · Fundamentos do Python I</title>
+<link rel="stylesheet" href="../assets/css/slides.css">
+<link rel="stylesheet" href="../assets/css/encontro.css">
+</head>
+<!-- Modelo para copiar ao criar um encontro. Não entra no manifesto.
+     Troque data-encontro pelo número do encontro e renomeie para encontro-NN.html. -->
+<body data-encontro="0">
+<div class="palco">
+
+<!-- 1 · TÍTULO: a capa é o único slide com rodapé escrito à mão -->
+<section class="slide capa">
+  <img class="logo" src="../assets/img/senac.png" alt="Senac">
+  <div class="corpo">
+    <p class="numero">Encontro 00</p>
+    <h1>Título do encontro</h1>
+    <p class="sub">Uma frase sobre o que a turma consegue fazer ao sair daqui.</p>
+  </div>
+  <img class="python" src="../assets/img/python-logo.svg" alt="">
+  <div class="rodape"><span>Etapa 0 · Nome da etapa</span><span>Fundamentos do Python I · Senac Jaraguá do Sul</span></div>
+</section>
+
+<!-- 2 · AQUECIMENTO: desafio curto revisando o encontro anterior, 10 minutos -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Aquecimento · 10 minutos</p>
+    <h2>Pergunta curta sobre o encontro anterior</h2>
+    <ol class="passos">
+      <li>Abra o IDLE.</li>
+      <li>Faça uma coisa pequena com o que já foi visto.</li>
+      <li>Confira se apareceu na tela o resultado esperado.</li>
+    </ol>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 3 · A SITUAÇÃO-PROBLEMA: o problema do cardápio antes do conceito -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O caixa precisa do total do pedido</h2>
+    <p class="intro">Um cliente pede três pastéis. Quem calcula o total hoje é a pessoa no caixa, de cabeça.</p>
+    <p class="destaque">Hoje você vai fazer o computador calcular por ela.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 4 · CÓDIGO COM PASSOS: todo slide de mão na massa tem <ol class="passos"> -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O total de um pedido</h2>
+    <div class="codigo">
+      <div class="arquivo">exemplo do professor · pedido.py</div>
+<pre><span class="com"># preço que não muda durante o programa: constante, em maiúsculas</span>
+PRECO_PASTEL = <span class="num">8.5</span>
+quantidade = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+total = PRECO_PASTEL * quantidade
+<span class="fn">print</span>(<span class="str">"Total: R$"</span>, total)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>No IDLE, abra <b>File › New File</b> e cole o código.</li>
+      <li>Salve como <code>pedido.py</code> na sua pasta do curso.</li>
+      <li>Rode com <b>F5</b>, digite <code>3</code> e confira <code>Total: R$ 25.5</code>.</li>
+    </ol>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 5 · PRÁTICA DO CICLO: logo depois do conceito, nunca acumulada no fim -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Agora é o seu pedido</h2>
+    <div class="tarefas">
+      <div class="tarefa"><span class="n">1</span><span class="txt">Troque o pastel por outro item do cardápio, com outro preço.</span></div>
+      <div class="tarefa"><span class="n">2</span><span class="txt">Peça a quantidade ao usuário com <code>input</code>.</span></div>
+      <div class="tarefa"><span class="n">3</span><span class="txt">Mostre o total na tela.</span></div>
+      <div class="tarefa"><span class="n">4</span><span class="txt">Explique para quem senta ao lado por que o preço está em maiúsculas.</span></div>
+    </div>
+    <p class="dica"><b>Correção coletiva</b> em seguida: dois alunos mostram a solução no projetor.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 6 · TICKET DE SAÍDA: exercício curto entregue na hora, evidência para A/PA/NA -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Ticket de saída · 15 minutos</p>
+    <h2>Um programa curto, entregue antes de sair</h2>
+    <ol class="passos">
+      <li>Escreva um programa que faça uma coisa só, com o que foi visto hoje.</li>
+      <li>Salve como <code>ticket-00-seunome.py</code>.</li>
+      <li>Entregue pelo canal combinado e confira se o arquivo chegou.</li>
+    </ol>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 7 · RECAPITULAÇÃO: cinco pontos e o gancho para o próximo encontro -->
+<section class="slide escuro">
+  <div class="corpo">
+    <h2>O que fica do encontro 00</h2>
+    <ul class="recap">
+      <li>Primeiro ponto.</li>
+      <li>Segundo ponto.</li>
+      <li>Terceiro ponto.</li>
+      <li>Quarto ponto.</li>
+      <li>Quinto ponto.</li>
+    </ul>
+    <p class="proximo"><b>Próximo encontro:</b> o gancho, em uma frase.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+</div>
+<nav class="barra" id="barra"></nav>
+<script src="../assets/js/aulas.js"></script>
+<script src="../assets/js/slides.js"></script>
+</body>
+</html>

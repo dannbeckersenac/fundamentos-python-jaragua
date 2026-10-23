@@ -1,0 +1,213 @@
+/* =========================================================
+   Cronograma · Fundamentos do Python I
+   Folha de estilos
+
+   A barra do topo, a capa, o tema e o rodapé vêm de
+   ../assets/css/navegacao.css, a folha comum com o índice
+   das aulas. Aqui fica só o que é do cronograma.
+
+   Sumário
+   1. Tokens próprios do cronograma
+   2. (comum, em navegacao.css)
+   3. Filtros da barra do topo
+   4. (comum, em navegacao.css)
+   5. Trilha do ano
+   6. Cartões das etapas
+   7. Calendário
+   8. Marcos
+   9. Barra de detalhe
+   10. Responsivo e impressão
+   ========================================================= */
+
+/* ---------- 1. Tokens ---------- */
+:root{
+  /* tema escuro, o padrão */
+  --hachura:rgba(255,255,255,.05);
+  --vidro-2:rgba(15,23,42,.96);
+  --celula:rgba(255,255,255,.02);
+  --tinta-dia:20%;
+  --tinta-dia-hover:34%;
+
+  /* cores das etapas do curso, na ordem */
+  --ambiente:#FFB020;
+  --logica:#4CC2FF;
+  --decisoes:#3DDC97;
+  --repeticao:#A78BFA;
+  --entrega:#FF6FA5;
+
+  /* encontro dado pelo outro docente do curso */
+  --outro:#FFD166;
+}
+
+[data-tema="claro"]{
+  --hachura:rgba(15,23,42,.10);
+  --vidro-2:rgba(255,255,255,.97);
+  --celula:rgba(15,23,42,.02);
+  --tinta-dia:24%;
+  --tinta-dia-hover:40%;
+
+  --ambiente:#A96B00;
+  --logica:#0F6FBE;
+  --decisoes:#0A8F60;
+  --repeticao:#6B4CE0;
+  --entrega:#C2306B;
+
+  --outro:#8A4B00;
+}
+
+/* ---------- 3. Filtros da barra do topo ---------- */
+/* segunda linha da barra, embaixo da marca, das abas e do tema */
+.filtros{display:flex;align-items:center;gap:12px;min-width:0}
+.filtros-rotulo{font:400 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--suave-2);flex:none}
+.chips{display:flex;gap:7px;flex-wrap:wrap;min-width:0}
+.chip{
+  font:500 12.5px/1 var(--corpo);
+  color:var(--suave);
+  background:var(--painel);
+  border:1px solid var(--linha);
+  border-radius:999px;padding:8px 13px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px;
+  transition:color .15s,border-color .15s,background .15s;
+}
+.chip i{width:8px;height:8px;border-radius:2px;background:currentColor;display:block}
+.chip:hover{color:var(--texto);border-color:var(--linha-2)}
+.chip[aria-pressed="true"]{color:var(--ink);background:var(--texto);border-color:var(--texto);font-weight:600}
+
+/* ---------- 5. Trilha do curso ---------- */
+.trilha-sec{padding:44px 0 8px}
+.trilha{display:flex;gap:3px;align-items:stretch;padding:14px;border:1px solid var(--linha);border-radius:var(--r);background:var(--painel)}
+.tgrupo{display:flex;flex-direction:column;gap:8px;min-width:0}
+.tbarras{display:flex;gap:2px}
+.tbarra{
+  height:38px;flex:1 1 auto;min-width:4px;border-radius:3px;
+  background:var(--c);opacity:.42;cursor:pointer;border:0;padding:0;
+  transition:opacity .15s,transform .15s;
+}
+.tbarra:hover,.tbarra.on{opacity:1;transform:translateY(-2px)}
+.tbarra.feita{opacity:.9}
+.tbarra.hoje{opacity:1;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--texto)}
+.trotulo{font:500 11.5px/1 var(--corpo);color:var(--suave);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trotulo b{color:var(--c);font-weight:600}
+.trotulo span{font-family:var(--mono);font-size:10.5px;color:var(--suave-2);display:block;margin-top:4px}
+
+/* ---------- 6. Cartões das etapas ---------- */
+.etapas-sec{padding:44px 0 0}
+.grade-etapas{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px}
+.etapa{
+  position:relative;overflow:hidden;text-align:left;
+  border:1px solid var(--linha);background:var(--painel);border-radius:var(--r);
+  padding:18px 18px 16px;cursor:pointer;color:inherit;font:inherit;
+  transition:border-color .18s,background .18s,transform .18s;
+}
+.etapa:hover{border-color:var(--linha-2);background:var(--painel-2);transform:translateY(-2px)}
+.etapa[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent)}
+.etapa::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c)}
+.etapa-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.etapa-tag{font:700 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--c);text-transform:uppercase}
+.etapa-per{font:400 11px/1 var(--mono);color:var(--suave-2)}
+.etapa h3{font-family:var(--display);font-weight:500;font-size:17px;letter-spacing:-.01em;margin:0 0 8px;line-height:1.25}
+.etapa p{margin:0 0 14px;font-size:13.4px;color:var(--suave);line-height:1.5}
+.etapa-nums{display:flex;gap:18px;border-top:1px solid var(--linha);padding-top:11px}
+.etapa-nums div{font:700 15px/1.1 var(--display)}
+.etapa-nums small{display:block;font:400 10px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--suave-2)}
+
+/* ---------- 7. Calendário ---------- */
+.cal{padding:46px 0 0}
+.meses{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
+.mes{border:1px solid var(--linha);border-radius:var(--r);background:var(--painel);padding:16px 14px 14px;scroll-margin-top:130px}
+.mes h3{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.02em;margin:0 0 2px;text-transform:uppercase}
+.mes .resumo{font:400 11px/1 var(--mono);color:var(--suave-2);margin-bottom:12px;display:block}
+.dow,.dias{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dow span{font:400 10px/1 var(--mono);color:var(--suave-2);text-align:center;padding-bottom:6px}
+.dia{
+  position:relative;aspect-ratio:1/1;border-radius:8px;border:1px solid transparent;
+  display:flex;align-items:center;justify-content:center;
+  font:400 13px/1 var(--mono);color:var(--suave-2);background:var(--celula);
+}
+.dia.fora{background:none}
+.dia.aula{
+  color:var(--texto);cursor:pointer;font-weight:700;
+  background:color-mix(in srgb,var(--c) var(--tinta-dia),transparent);
+  border-color:color-mix(in srgb,var(--c) 46%,transparent);
+}
+.dia.aula::after{content:"";position:absolute;left:6px;right:6px;bottom:4px;height:2px;border-radius:2px;background:var(--c)}
+.dia.aula:hover{background:color-mix(in srgb,var(--c) var(--tinta-dia-hover),transparent)}
+.dia.aval::before{
+  content:"";position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;
+  background:var(--texto);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 40%,transparent);
+}
+/* encontro com o outro docente: mantém a cor da etapa e ganha moldura tracejada */
+.dia.aula.outro{border:2px dashed var(--outro)}
+.dia.aula.outro::before{
+  content:"";position:absolute;top:3px;left:3px;width:6px;height:6px;border-radius:50%;
+  background:var(--outro);
+}
+.dia.pausa{color:var(--suave-2);cursor:pointer;background:repeating-linear-gradient(-45deg,var(--hachura) 0 3px,transparent 3px 7px)}
+.dia.hoje{box-shadow:0 0 0 2px var(--texto)}
+.dia.sel{box-shadow:0 0 0 2px var(--acento)}
+.dia.apagado{opacity:.16}
+body.filtrando .dia.aula:not(.apagado){box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 60%,transparent)}
+@keyframes pulso{0%,100%{transform:scale(1)}40%{transform:scale(1.14)}}
+.dia.pulsa{animation:pulso .6s ease-in-out 2}
+
+.legenda{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--suave)}
+.legenda span{display:inline-flex;align-items:center;gap:7px}
+.legenda i{width:13px;height:13px;border-radius:4px;border:1px solid var(--linha-2);display:block;flex:none}
+.legenda .am{background:color-mix(in srgb,var(--c) var(--tinta-dia),transparent);border-color:var(--c)}
+.legenda .pa{background:repeating-linear-gradient(-45deg,var(--hachura) 0 3px,transparent 3px 7px)}
+.legenda .av{background:var(--texto);border-radius:50%;width:9px;height:9px;border:0}
+.legenda .ho{box-shadow:0 0 0 2px var(--texto);background:transparent;border-color:transparent}
+.legenda .ou{background:color-mix(in srgb,var(--outro) 18%,transparent);border:2px dashed var(--outro)}
+
+/* ---------- 8. Marcos ---------- */
+.marcos{padding:46px 0 0}
+.grade-marcos{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:12px;margin-top:16px}
+.marco{border:1px solid var(--linha);border-radius:var(--r);padding:16px;background:var(--painel)}
+.marco h4{margin:0 0 10px;font:600 12px/1 var(--corpo);letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+.marco ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.marco li{display:flex;gap:11px;align-items:baseline;font-size:13.6px}
+.marco time{font:700 11.5px/1.4 var(--mono);color:var(--suave-2);min-width:52px;flex:none}
+.marco li b{font-weight:600;color:var(--texto)}
+.marco li span{color:var(--suave)}
+.marco li i{width:7px;height:7px;border-radius:2px;background:var(--c);display:inline-block;flex:none;transform:translateY(-1px)}
+
+/* ---------- 9. Detalhe ---------- */
+.detalhe{
+  position:fixed;left:50%;bottom:18px;transform:translate(-50%,140%);
+  z-index:50;width:min(560px,calc(100% - 32px));
+  background:var(--vidro-2);backdrop-filter:blur(16px);
+  border:1px solid var(--linha-2);border-radius:14px;
+  padding:14px 16px;display:flex;align-items:center;gap:14px;
+  box-shadow:var(--sombra);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1);
+}
+.detalhe.aberto{transform:translate(-50%,0)}
+.detalhe .faixa{width:4px;align-self:stretch;border-radius:4px;background:var(--c);flex:none}
+.detalhe .txt{min-width:0}
+.detalhe p{margin:0}
+.detalhe .dt{font:400 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+.detalhe .tt{font-family:var(--display);font-weight:500;font-size:16.5px;letter-spacing:-.01em;margin-top:3px}
+.detalhe .sb{font-size:12.8px;color:var(--suave);margin-top:3px}
+.detalhe button{
+  margin-left:auto;flex:none;background:var(--painel);border:1px solid var(--linha);
+  color:var(--suave);border-radius:9px;width:32px;height:32px;cursor:pointer;font-size:16px;line-height:1;
+}
+.detalhe button:hover{color:var(--texto);border-color:var(--linha-2)}
+
+
+/* ---------- 10. Responsivo e impressão ---------- */
+@media (max-width:700px){
+  .trotulo{display:none}
+  .tbarras{gap:1px}
+  .tbarra{height:30px}
+  .trilha{padding:10px}
+  .filtros-rotulo{display:none}
+  .chips{overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+  .chip{flex:none}
+  .detalhe{bottom:10px}
+  .mes{scroll-margin-top:120px}
+}
+@media print{
+  .detalhe{display:none}
+  .mes,.etapa,.marco,.trilha{break-inside:avoid;border-color:#ccc}
+}
