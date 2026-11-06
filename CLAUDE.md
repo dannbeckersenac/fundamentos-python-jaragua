@@ -81,11 +81,11 @@ guarda só feriados e notas. Nunca escreva data dentro de um slide.
 | # | Data | Docente | Etapa | Foco |
 |---|---|---|---|---|
 | 1 | sex 23/10 | Daniel | 1 · O ambiente | abertura, software e mercado, história do Python, interpretador e compilador, IDLE, primeiro `print` |
-| 2 | sáb 24/10 | Diego | 2 · A lógica | algoritmo, pseudocódigo, fluxograma, 5Qs, entrada, processamento e saída, `input`, `print`, variáveis |
-| 3 | sáb 31/10 | Diego | 2 · A lógica | tipos de dados, conversão, constantes, operadores aritméticos |
-| 4 | sex 06/11 | Daniel | 3 · As decisões | booleanos, relacionais e lógicos, `if`/`elif`/`else`, regras de negócio simples |
-| 5 | sáb 07/11 | Daniel | 3 · As decisões | f-strings, `round`, saída antecipada, par ou ímpar com `%` |
-| 6 | sex 13/11 | Daniel | 4 · A repetição | listas e `for` (`append`, `remove`, `len`, `sum`, `continue`) |
+| 2 | sáb 24/10 | Diego | 2 · A lógica | **dado:** lógica, `input`, variáveis |
+| 3 | sáb 31/10 | Diego | 2 · A lógica | **dado:** os quatro tipos, conversão, `if`/`elif`/`else`, `and`, um pouco de `or` |
+| 4 | sex 06/11 | Daniel | 3 · As decisões | entrada, processamento e saída, `bool` na prática, comparadores, `not`, revisão do `if`, atividades em níveis |
+| 5 | sáb 07/11 | Daniel | 3 · As decisões | f-strings, `round`, par ou ímpar com `%`; depois do intervalo, listas sem laço |
+| 6 | sex 13/11 | Daniel | 4 · A repetição | o `for` percorrendo o pedido, `continue` |
 | 7 | sáb 14/11 | Daniel | 4 · A repetição | `while`, `break`, menu repetitivo, jogo de adivinhar o número |
 | 8 | sáb 21/11 | Daniel | 5 · O sistema de pedidos | laboratório e recuperação, sem conteúdo novo (sábado de feriadão, turma pode vir reduzida) |
 | 9 | sex 27/11 | Daniel | 5 · O sistema de pedidos | bitwise curto e aplicado, início do desafio final |
@@ -130,7 +130,8 @@ O encontro fica, então, com esta forma no HTML (o `aulas/modelo.html` mostra o 
 2. Aquecimento (exercício), a partir do encontro 2
 3. Para cada ciclo: a situação-problema, o conceito em poucos slides, um slide de mão na massa com
    `<ol class="passos">`, e um slide de prática (exercício) com a correção coletiva
-4. Desafio integrador (exercício) com o cardápio
+4. Atividade integradora (exercício) com o cardápio: uma só, em partes, com regras que os slides não
+   mostraram, e um slide com os casos para conferir
 5. Ticket de saída (exercício): curto, individual, entregue antes de sair
 6. Recapitulação (escuro), com 5 pontos e o gancho para o próximo encontro
 
@@ -157,10 +158,18 @@ o cliente que gastou mais de R$ 100 e não ganhou o desconto.
 - **Rode o código antes de pôr no slide.** Teste cada trecho num `python3` de verdade, com as entradas
   que o slide mostra, e copie a saída exata para o último passo.
 
-### Momentos individuais e colaborativos
+### Prática individual, atividade final diferente dos exemplos
 
-O plano pede alternância. A prática é individual; a correção coletiva e o "explique para quem senta ao
-lado" são o momento colaborativo. O ticket de saída é sempre individual.
+- **Toda prática é individual.** Nada de "conte para quem senta ao lado" nem "explique ao colega": o
+  docente pediu assim no encontro 4. A resposta que antes ia para o colega vai para um comentário no
+  código. O momento coletivo é a correção no projetor, conduzida pelo professor.
+- **Sem slide de intervalo.** O docente para quando o horário pede, sem correr para alcançar um slide.
+- **A atividade do fim não repete os exemplos dos slides.** A turma testa os exemplos enquanto a aula
+  anda, e chega na atividade já com aquilo pronto. A atividade usa regras novas (no encontro 4: combo,
+  forma de pagamento e troco) e de preferência é **uma só, em partes**, que junta tudo o que foi visto
+  até ali. As partes vão da mais simples à mais difícil, e "até qual parte você chegou" mede o nível.
+  Um slide "Confira com estes pedidos" dá as entradas e os valores que têm que sair. A solução
+  testada fica em `docente/solucoes/`.
 
 ---
 
@@ -191,11 +200,11 @@ introduz.
 | # | Introduz |
 |---|---|
 | 1 | o que é software, linguagem, história e características do Python, mercado; código-fonte, interpretador e compilador (Python é interpretado); IDLE: instalar, shell interativo (`>>>`) e arquivo `.py`, salvar, rodar com F5; `print` com texto entre aspas; comentário com `#`; ler a mensagem de erro |
-| 2 | algoritmo, pseudocódigo, fluxograma, método dos 5Qs; entrada, processamento e saída; `input`, `print` com várias partes separadas por vírgula; variável, atribuição, nome em `snake_case` |
-| 3 | `int`, `float`, `str`, `bool`; `type()`; tipagem dinâmica (a variável pode mudar de tipo); `input` devolve texto; conversão com `int()`, `float()`, `str()`; constante em MAIÚSCULAS; operadores `+ - * / // % **` e precedência |
-| 4 | `True` e `False`; `== != > < >= <=`; `and`, `or`, `not`; `if`, `elif`, `else`; indentação; regra de negócio simples (desconto de 10% acima de R$ 100); requisito em versão simples |
-| 5 | f-string, inclusive `{valor:.2f}`; `round`; saída antecipada (validar a entrada primeiro); par ou ímpar com `%` |
-| 6 | lista literal, índice, `append`, `remove`, `len`, `sum`; `for item in lista`; `continue` |
+| 2 | (Diego) lógica; `input`, `print` com várias partes separadas por vírgula; variável, atribuição. Entrada, processamento e saída **não** foi dado |
+| 3 | (Diego) `int`, `float`, `str`, `bool` (o `bool` sem exemplo prático); `input` com conversão por `int()` e `float()`, usado bastante; `if`, `elif`, `else` "em parte"; `and` bastante, `or` só comentado com exemplos. **Não confirmado:** `//`, `%`, `**`, constante, fluxograma e 5Qs |
+| 4 | entrada, processamento e saída; constante em MAIÚSCULAS; `True` e `False` em variável, `type()` dando `bool`; `== != > < >= <=`; `or` na prática e `not` (devagar: o Diego avisou que confunde); revisão do `if`/`elif`/`else`, a ordem das condições, o recuo; `=` contra `==`. Atividade única "Fechando a conta", em quatro partes (pedido, combo, pagamento com troco, bônus), com a solução em `docente/solucoes/conta.py` |
+| 5 | f-string, inclusive `{valor:.2f}`; `round` (o gancho: R$ 119 com 10% de desconto dá `107.10000000000001`); par ou ímpar com `%`; listas: literal, índice, `append`, `remove`, `len`, `sum`, sem laço |
+| 6 | `for item in lista` percorrendo o pedido; `continue` |
 | 7 | `while`, condição de parada, `break`, menu repetitivo; `import random` e `random.randint` para o jogo de adivinhar |
 | 8 | nada novo: desafios de revisão dos encontros 4 a 7, em níveis de dificuldade |
 | 9 | `&`, `\|`, `bin()`; opções combinadas num número; par ou ímpar com `& 1`; enunciado do desafio final |
@@ -206,8 +215,9 @@ orientação a objetos, `try`/`except`, Git e GitHub, API, front-end e back-end 
 `datetime`. Em listas, `append`, `remove`, `len`, `sum` e o `for` bastam.
 
 Pontos a decidir com o docente antes de usar: `range` e `enumerate` (estão no deck da aula 08 de
-origem e não na lista do encontro 6); `math.ceil` (deck da aula 07, fora da lista do encontro 5); como
-fazer a saída antecipada sem `def` (o `else` depois da validação, ou `exit()`).
+origem e não na lista do encontro 6); `math.ceil` (deck da aula 07). A saída antecipada saiu do
+encontro 5: sem `def`, ela é só validar a entrada num `if` antes do resto, e aparece assim na
+atividade 5 do encontro 4.
 
 ### Correções obrigatórias no material reaproveitado
 
@@ -219,7 +229,7 @@ O material base (decks do Drive, listados em `docente/orientacao.md`) foi feito 
 - **Nomes:** `snake_case` (`preco_produto`), nunca camelCase (`precoProduto`). É o PEP 8.
 - **Constantes:** convenção de nome em maiúsculas (`TAXA_ENTREGA = 5.0`). Python não impede a mudança.
 - **"Compilar":** o plano usa o termo, mas Python é interpretado. A diferença é explicada no encontro 1.
-- **Ambiente:** o **IDLE** é o ambiente principal. VS Code, Jupyter e PyCharm só como menção.
+- **Ambiente:** o plano pede o **IDLE**, e o encontro 1 foi com ele. Com o Diego, a maior parte da turma passou para o **VS Code**; alguns ficaram no IDLE porque a máquina não tinha espaço. Os slides do encontro 4 em diante servem aos dois: rodar é "▶ no VS Code, F5 no IDLE", e a saída aparece no terminal ou no shell.
 - **Slide "O que é o elif?"** dos decks 06 e 07: uma versão lista o `else` antes do `elif`. Corrija.
 - **Digitação:** "aǵua", "fever", "incosistente", "Celcius", "sera", "Algorítmos".
 - **Aula 01 de origem:** sai tudo do curso de 200 h (UC1 a UC4, prof. Allan, projeto integrador).

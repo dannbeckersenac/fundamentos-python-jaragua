@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 04 · Decisões no pedido · Fundamentos do Python I</title>
+<link rel="stylesheet" href="../assets/css/slides.css">
+<link rel="stylesheet" href="../assets/css/encontro.css">
+</head>
+<body data-encontro="4">
+<div class="palco">
+
+<!-- ===================== ABERTURA ===================== -->
+
+<!-- 1 · CAPA -->
+<section class="slide capa">
+  <img class="logo" src="../assets/img/senac.png" alt="Senac">
+  <div class="corpo">
+    <p class="numero">Encontro 04</p>
+    <h1>Decisões no pedido</h1>
+    <p class="sub">Vamos revisar as decisões em Python e usar as regras da lanchonete para praticar.</p>
+  </div>
+  <img class="python" src="../assets/img/python-logo.svg" alt="">
+  <div class="rodape"><span>Etapa 3 · As decisões</span><span>Fundamentos do Python I · Senac Jaraguá do Sul</span></div>
+</section>
+
+<!-- 2 · ONDE A GENTE PAROU -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O que vocês viram com o professor Diego</h2>
+    <div class="miolo">
+      <div class="icones n4">
+        <figure><img src="../assets/img/icones/ideia-encaixe.png" alt=""><span class="t">Tipos de dados</span><span class="d"><code>int</code>, <code>float</code>, <code>str</code> e <code>bool</code></span></figure>
+        <figure><img src="../assets/img/icones/conversa.png" alt=""><span class="t">input</span><span class="d">ler uma resposta e converter com <code>int()</code> ou <code>float()</code></span></figure>
+        <figure><img src="../assets/img/icones/pessoa-duvida.png" alt=""><span class="t">if, elif, else</span><span class="d">escolher qual trecho vai rodar</span></figure>
+        <figure><img src="../assets/img/icones/conversa-setas.png" alt=""><span class="t">and e or</span><span class="d">combinar condições</span></figure>
+      </div>
+      <p class="intro" style="margin-top: 34px">Hoje vamos retomar esses exemplos e praticar com pedidos da lanchonete.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 3 · O EDITOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Como rodar o código no VS Code e no IDLE</h2>
+    <p class="intro">Vocês podem continuar no editor que já usam. O código Python é o mesmo.</p>
+    <div class="miolo">
+      <div class="cartoes n2">
+        <div class="cartao"><img src="../assets/img/icones/tela-codigo.png" alt=""><span class="t">No VS Code</span><span class="d">Salvar o arquivo e clicar no botão de executar, no alto à direita. A saída aparece no terminal, embaixo. Digitar ali as respostas do <code>input</code>.</span></div>
+        <div class="cartao"><img src="../assets/img/icones/notebook-codigo.png" alt=""><span class="t">No IDLE</span><span class="d">Salvar o arquivo e apertar <b>F5</b>. A saída aparece na janela do shell. Digitar ali as respostas do <code>input</code>.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 4 · AQUECIMENTO -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Aquecimento · 10 minutos</p>
+    <h2>Quanto deu o pedido?</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Criar o arquivo <code>aquecimento.py</code> na pasta do curso.</li>
+        <li>Pedir a quantidade de pastéis com <code>input</code>. Cada pastel custa R$ 8,50.</li>
+        <li>Calcular o total e mostrar na tela.</li>
+        <li>Executar com a quantidade <code>3</code>. Conferir o total <code>25.5</code>.</li>
+      </ol>
+      <p class="dica">Tentar primeiro sem consultar o caderno. Se travar, consultar o exemplo e continuar.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 1 · ENTRADA, PROCESSAMENTO E SAÍDA ===================== -->
+
+<!-- 5 · ANALOGIA DO RESTAURANTE (desenho do deck da Aula 03 do docente) -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O programa como um restaurante</h2>
+    <div class="restaurante">
+      <div class="salao"></div>
+      <div class="placa"><img src="../assets/img/icones/restaurante.png" alt=""><span>Restaurante (o programa)</span></div>
+      <svg viewBox="0 0 1152 500" aria-hidden="true">
+        <defs>
+          <marker id="ponta" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M1 1 L8 5 L1 9" style="stroke-width:2"/>
+          </marker>
+        </defs>
+        <path d="M168 300 L262 300" marker-end="url(#ponta)"/>
+        <path d="M330 222 C330 150 420 120 510 150" marker-end="url(#ponta)"/>
+        <path d="M712 140 L888 140" marker-end="url(#ponta)"/>
+        <path d="M888 190 L712 190" marker-end="url(#ponta)"/>
+        <path d="M600 300 C600 360 650 380 712 370" marker-end="url(#ponta)"/>
+        <path d="M712 450 C600 490 460 470 420 420" marker-end="url(#ponta)"/>
+      </svg>
+      <figure style="left: 0; top: 196px; width: 170px"><img src="../assets/img/icones/cliente.png" alt=""><span class="t">Cliente</span><span class="d">quem usa</span></figure>
+      <figure style="left: 236px; top: 222px"><img src="../assets/img/icones/garcom.png" alt=""><span class="t">Garçom</span><span class="d">anota o pedido e traz o prato</span></figure>
+      <figure style="left: 506px; top: 84px"><img src="../assets/img/icones/cozinha.png" alt=""><span class="t">Cozinha</span><span class="d">prepara o pedido</span></figure>
+      <figure style="left: 890px; top: 84px"><img src="../assets/img/icones/dispensa.png" alt=""><span class="t">Despensa</span><span class="d">guarda os ingredientes</span></figure>
+      <figure style="left: 700px; top: 268px"><img src="../assets/img/icones/prato.png" alt=""><span class="t">Prato</span><span class="d">o resultado</span></figure>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 6 · AS TRÊS PARTES, NO MESMO RESTAURANTE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Entrada, processamento e saída</h2>
+    <div class="miolo">
+      <div class="icones n3">
+        <figure><img src="../assets/img/icones/garcom.png" alt=""><span class="t">O garçom anota o pedido</span><span class="d"><b>entrada:</b> os dados recebidos</span></figure>
+        <figure><img src="../assets/img/icones/cozinha.png" alt=""><span class="t">A cozinha prepara</span><span class="d"><b>processamento:</b> o que fazemos com os dados</span></figure>
+        <figure><img src="../assets/img/icones/prato.png" alt=""><span class="t">O prato chega à mesa</span><span class="d"><b>saída:</b> o resultado entregue</span></figure>
+      </div>
+      <p class="intro" style="margin-top: 34px">No aquecimento, vocês receberam a quantidade, calcularam o total e mostraram o resultado.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 7 · AS TRÊS PARTES NO CÓDIGO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>As três partes no código</h2>
+    <div class="codigo idle">
+      <div class="arquivo">exemplo do professor · pedido.py</div>
+<pre>PRECO_PASTEL = <span class="num">8.5</span>
+
+<span class="com"># entrada: o que vem de fora</span>
+quantidade = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+
+<span class="com"># processamento: a conta</span>
+total = PRECO_PASTEL * quantidade
+
+<span class="com"># saída: o que volta para o cliente</span>
+<span class="fn">print</span>(<span class="str">"Total: R$"</span>, total)</pre>
+    </div>
+    <p class="dica">Usamos maiúsculas em <code>PRECO_PASTEL</code> para indicar uma <b>constante</b>. É uma convenção. O Python permite mudar esse valor.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 8 · PRÁTICA DO CICLO 1 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Identificar as três partes do programa</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt">No <code>aquecimento.py</code>, marcar a entrada, o processamento e a saída com comentários.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt">Criar a constante <code>TAXA_ENTREGA = 5.0</code> no início do arquivo.</span></div>
+        <div class="tarefa"><span class="n">3</span><span class="txt">Somar a taxa ao total. Conferir se <code>3</code> pastéis custam <code>30.5</code> com a entrega.</span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt">Explicar num comentário em qual parte a taxa é somada ao pedido.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 2 · VERDADEIRO OU FALSO ===================== -->
+
+<!-- 9 · PERGUNTAS DE SIM OU NÃO -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/duvida.png" alt="">
+        <div>
+          <p>O pedido passou de R$ 100? O cliente tem cupom? É para viagem?</p>
+          <p>Essas perguntas têm duas respostas. Em Python, usamos <code>True</code> para verdadeiro e <code>False</code> para falso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 10 · A COMPARAÇÃO VIRA BOOL -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O resultado de uma comparação</h2>
+    <div class="janelas">
+      <div class="codigo idle">
+        <div class="arquivo">booleano.py</div>
+<pre>total = <span class="num">120</span>
+<span class="fn">print</span>(total &gt; <span class="num">100</span>)
+<span class="fn">print</span>(total &gt; <span class="num">200</span>)
+<span class="fn">print</span>(<span class="fn">type</span>(total &gt; <span class="num">100</span>))</pre>
+      </div>
+      <div class="codigo idle shell">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">True</span>
+<span class="saida">False</span>
+<span class="saida">&lt;class 'bool'&gt;</span></pre>
+      </div>
+    </div>
+    <ol class="passos curta">
+      <li>Criar <code>booleano.py</code> na pasta do curso com as quatro linhas do exemplo.</li>
+      <li>Executar o arquivo no editor.</li>
+      <li>Conferir a saída. Devem aparecer <code>True</code>, <code>False</code> e o tipo <code>bool</code>.</li>
+    </ol>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 11 · BOOL NUMA VARIÁVEL -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Guardar a comparação numa variável</h2>
+    <div class="miolo">
+      <div class="codigo idle">
+        <div class="arquivo">booleano.py</div>
+<pre>total = <span class="num">120</span>
+passou_de_100 = total &gt; <span class="num">100</span>   <span class="com"># guarda True</span>
+tem_cupom = <span class="kw">True</span>               <span class="com"># escrito direto</span>
+<span class="fn">print</span>(passou_de_100)
+<span class="fn">print</span>(tem_cupom)</pre>
+      </div>
+      <ul class="lista">
+        <li><code>True</code> e <code>False</code> começam com maiúscula e vão sem aspas.</li>
+        <li><code>"True"</code>, com aspas, é um texto do tipo <code>str</code>.</li>
+        <li>Nomes como <code>tem_cupom</code> ajudam a entender o que a variável guarda.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 12 · OS SEIS COMPARADORES -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Os operadores de comparação</h2>
+    <p class="intro">Com <code>quantidade = 3</code> e <code>total = 120</code>:</p>
+    <table>
+      <thead><tr><th>Sinal</th><th>Quer dizer</th><th>Exemplo</th><th>Resposta</th></tr></thead>
+      <tbody>
+        <tr><td><code>==</code></td><td>igual a</td><td><code>quantidade == 3</code></td><td>True</td></tr>
+        <tr><td><code>!=</code></td><td>diferente de</td><td><code>quantidade != 3</code></td><td>False</td></tr>
+        <tr><td><code>&gt;</code></td><td>maior que</td><td><code>total &gt; 100</code></td><td>True</td></tr>
+        <tr><td><code>&lt;</code></td><td>menor que</td><td><code>total &lt; 100</code></td><td>False</td></tr>
+        <tr><td><code>&gt;=</code></td><td>maior ou igual</td><td><code>quantidade &gt;= 3</code></td><td>True</td></tr>
+        <tr><td><code>&lt;=</code></td><td>menor ou igual</td><td><code>total &lt;= 100</code></td><td>False</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 13 · ERROS COMUNS COM BOOL -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Dois erros comuns</h2>
+    <div class="miolo">
+      <div class="comparacao">
+        <div class="lado">
+          <span class="rotulo">true com t minúsculo</span>
+          <div class="codigo idle shell">
+<pre>tem_cupom = true
+<span class="erro">NameError: name 'true' is not defined.</span></pre>
+          </div>
+        </div>
+        <div class="lado">
+          <span class="rotulo">Um único = no if</span>
+          <div class="codigo idle shell">
+<pre><span class="kw">if</span> total = <span class="num">100</span>:
+<span class="erro">SyntaxError: invalid syntax.</span></pre>
+          </div>
+        </div>
+      </div>
+      <p class="intro"><code>=</code> atribui um valor à variável. <code>==</code> compara dois valores. Nessa linha do <code>if</code>, precisamos comparar.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 14 · PRÁTICA DO CICLO 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Prever a saída antes de executar</h2>
+    <p class="intro">Anotar no caderno o resultado de cada <code>print</code>. Depois, executar o código em <code>adivinhe.py</code> e comparar.</p>
+    <div class="codigo idle">
+      <div class="arquivo">adivinhe.py</div>
+<pre>quantidade = <span class="num">3</span>
+<span class="fn">print</span>(quantidade &gt;= <span class="num">3</span>)
+<span class="fn">print</span>(quantidade == <span class="str">"3"</span>)
+<span class="fn">print</span>(<span class="num">8.5</span> * <span class="num">2</span> &gt; <span class="num">15</span>)
+<span class="fn">print</span>(<span class="str">"pastel"</span> == <span class="str">"Pastel"</span>)</pre>
+    </div>
+    <p class="dica">Se alguma resposta for diferente da prevista, explicar o motivo num comentário ao lado da linha.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 3 · AND, OR, NOT E O IF ===================== -->
+
+<!-- 15 · AND E OR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Combinar condições com and e or</h2>
+    <div class="miolo">
+      <div class="cartoes n2">
+        <div class="cartao"><span class="t">and: as duas condições verdadeiras</span><span class="d">A entrega é grátis para pedidos de R$ 100 ou mais <b>e</b> com endereço na cidade.</span><p><code>total &gt;= 100 and na_cidade</code></p></div>
+        <div class="cartao"><span class="t">or: pelo menos uma verdadeira</span><span class="d">O desconto vale para pedidos de R$ 100 ou mais <b>ou</b> para quem tem cupom. Também vale se as duas condições forem verdadeiras.</span><p><code>total &gt;= 100 or tem_cupom</code></p></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 16 · AND NO CÓDIGO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Usar and na regra de entrega</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · entrega_gratis.py</div>
+<pre>total = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Total do pedido: R$ "</span>))
+na_cidade = <span class="fn">input</span>(<span class="str">"Entrega aqui na cidade? (s/n) "</span>) == <span class="str">"s"</span>
+
+<span class="kw">if</span> total &gt;= <span class="num">100</span> <span class="kw">and</span> na_cidade:
+    <span class="fn">print</span>(<span class="str">"Entrega grátis!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega paga."</span>)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>Criar <code>entrega_gratis.py</code> na pasta do curso com o código do exemplo.</li>
+      <li>Executar com total <code>120</code> e cidade <code>s</code>. Conferir a mensagem <code>Entrega grátis!</code></li>
+      <li>Testar <code>120</code> e <code>n</code>, depois <code>80</code> e <code>s</code>. Nos dois casos, conferir <code>Entrega paga.</code></li>
+    </ol>
+    <p class="dica">Na linha 2, a comparação com <code>"s"</code> produz <code>True</code> ou <code>False</code>. Esse resultado fica em <code>na_cidade</code>.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 17 · OR NO CÓDIGO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Usar or na regra de desconto</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · desconto.py</div>
+<pre>total = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Total do pedido: R$ "</span>))
+tem_cupom = <span class="fn">input</span>(<span class="str">"Tem cupom? (s/n) "</span>) == <span class="str">"s"</span>
+
+<span class="kw">if</span> total &gt;= <span class="num">100</span> <span class="kw">or</span> tem_cupom:
+    <span class="fn">print</span>(<span class="str">"Você ganhou 10% de desconto!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Sem desconto desta vez."</span>)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>Criar <code>desconto.py</code> na pasta do curso com o código do exemplo.</li>
+      <li>Executar com total <code>80</code> e cupom <code>s</code>. Conferir a mensagem de desconto.</li>
+      <li>Executar com <code>80</code> e <code>n</code>. Conferir <code>Sem desconto desta vez.</code></li>
+    </ol>
+    <p class="dica">Com total de R$ 80, a primeira condição é falsa. O cupom torna a segunda verdadeira e garante o desconto.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 18 · NOT -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O not inverte True e False</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <div class="codigo idle">
+            <div class="arquivo">viagem.py</div>
+<pre>para_viagem = <span class="kw">False</span>
+
+<span class="kw">if</span> <span class="kw">not</span> para_viagem:
+    <span class="fn">print</span>(<span class="str">"Vai comer aqui: separe uma mesa."</span>)</pre>
+          </div>
+          <p class="intro">Podemos ler como "se <b>não</b> for para viagem". Como <code>para_viagem</code> é <code>False</code>, o <code>not</code> produz <code>True</code> e o <code>print</code> roda.</p>
+        </div>
+        <img src="../assets/img/icones/proibido.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 19 · FAIXAS COM ELIF -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Definir a taxa de entrega com elif</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · entrega.py</div>
+<pre>total = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Total do pedido: R$ "</span>))
+
+<span class="kw">if</span> total &gt;= <span class="num">100</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega grátis!"</span>)
+<span class="kw">elif</span> total &gt;= <span class="num">50</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega: R$ 5,00"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega: R$ 10,00"</span>)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>O Python testa primeiro a condição do <code>if</code>.</li>
+      <li>Executa o bloco da primeira condição verdadeira e pula os outros blocos dessa sequência.</li>
+      <li>Se nenhuma condição for verdadeira, executa o bloco do <code>else</code>.</li>
+    </ol>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 20 · A ORDEM IMPORTA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E se eu trocar a ordem?</h2>
+    <div class="miolo">
+      <div class="janelas">
+        <div class="codigo idle shell">
+          <div class="arquivo">entrega.py, com a ordem trocada</div>
+<pre><span class="kw">if</span> total &gt;= <span class="num">50</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega: R$ 5,00"</span>)
+<span class="kw">elif</span> total &gt;= <span class="num">100</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega grátis!"</span>)</pre>
+        </div>
+        <div>
+          <p class="intro">Com total de R$ 120, a condição <code>total &gt;= 50</code> já é verdadeira. O programa mostra uma taxa de R$ 5.</p>
+          <p class="intro">O <code>elif</code> nem chega a ser testado. Nessas faixas, precisamos testar <code>total &gt;= 100</code> primeiro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 21 · INDENTAÇÃO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O recuo diz o que está dentro do if</h2>
+    <div class="miolo">
+      <p class="legenda-janela"><b>Sem recuo:</b> falta indicar qual linha pertence ao bloco do <code>if</code>.</p>
+      <div class="codigo idle shell compacto">
+<pre><span class="kw">if</span> total &gt;= <span class="num">100</span>:
+<span class="fn">print</span>(<span class="str">"Entrega grátis!"</span>)
+<span class="erro">IndentationError: expected an indented block after 'if' statement on line 2</span></pre>
+      </div>
+      <p class="legenda-janela"><b>Com recuo:</b> usar 4 espaços. A tecla <b>Tab</b> pode inserir esses espaços, conforme a configuração do editor.</p>
+      <div class="codigo idle shell compacto">
+<pre><span class="kw">if</span> total &gt;= <span class="num">100</span>:
+    <span class="fn">print</span>(<span class="str">"Entrega grátis!"</span>)</pre>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== ATIVIDADE: FECHANDO A CONTA ===================== -->
+
+<!-- 22 · A ATIVIDADE DE HOJE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Atividade: fechar a conta</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Agora vocês vão criar <code>conta.py</code> para calcular a conta da lanchonete. A atividade tem quatro partes.</p>
+          <ul class="lista">
+            <li>Fazer as partes na ordem, cada um no seu arquivo.</li>
+            <li>Testar cada parte antes de começar a próxima.</li>
+            <li>Chamar o professor se precisar de ajuda.</li>
+            <li>Vamos acompanhar até qual parte cada um chegou. Tudo bem se não der tempo de terminar.</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/checklist.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 23 · PARTES 1 E 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Fechando a conta · partes 1 e 2</p>
+    <h2>O pedido e o combo</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt"><b>Montar o pedido.</b> Pastel custa R$ 8,50, caldo de cana R$ 6,00 e sorvete R$ 7,00. Mostrar o cardápio, pedir as quantidades e calcular o subtotal.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt"><b>Aplicar o combo.</b> Dar R$ 2 de desconto se houver pelo menos um pastel e um caldo. Se todas as quantidades forem zero, mostrar <code>Nenhum item no pedido.</code> e encerrar as perguntas.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 24 · PARTES 3 E 4 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Fechando a conta · partes 3 e 4</p>
+    <h2>O pagamento</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">3</span><span class="txt"><b>Receber o pagamento.</b> Pedir <code>pix</code>, <code>cartao</code> ou <code>dinheiro</code>. Dar 5% de desconto no pix. No dinheiro, pedir o valor recebido e mostrar o troco ou quanto falta. Para outra resposta, mostrar <code>Forma de pagamento inválida.</code></span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt"><b>Bônus.</b> Sugerir um caldo antes do pagamento se o cliente não tiver pedido nenhum.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 25 · EXTRA: O GARÇOM-ROBÔ -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Extra · para quem terminou a conta</p>
+    <h2>O garçom-robô</h2>
+    <div class="miolo">
+      <div class="janelas">
+        <div class="tarefas">
+          <div class="tarefa"><span class="n">1</span><span class="txt">Criar <code>robo.py</code>. Perguntar se o cliente está com muita fome, tem pressa e quer algo doce.</span></div>
+          <div class="tarefa"><span class="n">2</span><span class="txt">Perguntar quanto o cliente quer gastar.</span></div>
+          <div class="tarefa"><span class="n">3</span><span class="txt">Criar pelo menos quatro regras de recomendação. Usar <code>and</code>, <code>or</code> e <code>not</code> nas condições.</span></div>
+          <div class="tarefa"><span class="n">4</span><span class="txt">Escrever uma resposta para quando nenhuma regra servir. Pode ter humor.</span></div>
+        </div>
+        <div class="codigo idle shell compacto">
+          <div class="arquivo">Uma conversa com o robô</div>
+<pre><span class="saida">Está com muita fome? (s/n)</span> s
+<span class="saida">Tem pressa? (s/n)</span> s
+<span class="saida">Quer algo doce? (s/n)</span> n
+<span class="saida">Quanto quer gastar? R$</span> 20
+<span class="saida">Robô: dois pastéis, e corre!</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 26 · RECAPITULAÇÃO -->
+<section class="slide escuro">
+  <div class="corpo">
+    <h2>O que vocês praticaram hoje</h2>
+    <ul class="recap">
+      <li>No pedido, a entrada é a quantidade. Depois calculamos o total e mostramos a saída.</li>
+      <li>O resultado da comparação é <code>True</code> ou <code>False</code>. Podemos guardar esse valor numa variável.</li>
+      <li><b>and</b> exige as duas condições verdadeiras. <b>or</b> exige pelo menos uma. O not inverte o resultado.</li>
+      <li>Na sequência <code>if</code>, <code>elif</code> e <code>else</code>, só um bloco roda.</li>
+      <li>Usamos <code>=</code> para atribuir e <code>==</code> para comparar.</li>
+    </ul>
+    <p class="proximo"><b>Amanhã, às 9h:</b> vamos ajustar a exibição de valores como <code>R$ 11.875</code>, que aparece no combo pago no pix. Depois, começamos as listas.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+</div>
+<nav class="barra" id="barra"></nav>
+<script src="../assets/js/aulas.js"></script>
+<script src="../assets/js/slides.js"></script>
+</body>
+</html>

@@ -21,6 +21,9 @@ const PAUSAS = `
 `;
 
 const NOTAS = `
+10-24 encontro do professor Diego Guerra: lógica, input e variáveis; entrada, processamento e saída passou para 06/11
+10-31 encontro do professor Diego Guerra: tipos, conversão e as primeiras condicionais (if, elif, else, and); a turma passou a usar o VS Code
+11-06 revisão das decisões com o que faltou: entrada, processamento e saída, bool na prática e o not; atividades em níveis para medir a turma
 11-21 sábado do feriadão: sem conteúdo novo, tempo de laboratório e recuperação
 `;
 

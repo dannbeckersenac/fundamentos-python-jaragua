@@ -192,3 +192,29 @@
 /* foguinho em cima de uma figura (a fonte queimada da trajetória) */
 .com-fogo { position: relative; display: inline-block; }
 .com-fogo .fogo { position: absolute; top: -4px; right: -18px; font-size: 54px; line-height: 1; }
+
+/* cabeçalho de tabela em frase normal, sem caixa alta */
+th { font-family: var(--sans); font-size: 22px; letter-spacing: 0; text-transform: none; color: #5B6678; }
+
+/* ---------- analogia do restaurante (desenho do deck do docente) ----------
+   Caixa creme é o restaurante; cada figura e as setas têm posição fixa
+   dentro de uma área de 1152 x 500. */
+
+.restaurante { position: relative; width: 1152px; height: 500px; margin-top: 4px; }
+.restaurante .salao {
+  position: absolute; left: 196px; top: 64px; width: 950px; height: 430px;
+  background: #FFF4D2; border: 3px solid var(--escuro); border-radius: 6px;
+}
+.restaurante figure {
+  position: absolute; margin: 0; width: 200px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px;
+}
+.restaurante figure img { width: 116px; height: 116px; object-fit: contain; }
+.restaurante .t { font-size: 25px; font-weight: 700; color: var(--escuro); line-height: 1.15; }
+.restaurante .d { font-size: 22px; color: #4B5568; line-height: 1.2; }
+.restaurante .placa { position: absolute; left: 150px; top: 0; display: flex; align-items: center; gap: 12px; }
+.restaurante .placa img { width: 104px; height: 104px; }
+.restaurante .placa span { font-size: 25px; font-weight: 700; color: var(--escuro); }
+.restaurante svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.restaurante svg path { fill: none; stroke: #111827; stroke-width: 5; stroke-linecap: round; }
+.cartao > p { margin: 4px 0 0; font-size: 24px; }
