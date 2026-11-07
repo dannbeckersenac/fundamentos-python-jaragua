@@ -310,7 +310,7 @@ cartaoMarcos("Começo de cada etapa", window.ETAPAS.map(et => {
   return { data: diaMes(primeira.data), chave: et.chave, titulo: et.nome, sub: et.encontros };
 }));
 
-cartaoMarcos("Feriados", pausas.map(p => ({ data: diaMes(p.data), titulo: p.nome })));
+cartaoMarcos("Feriados e dias sem aula", pausas.map(p => ({ data: diaMes(p.data), titulo: p.nome })));
 
 /* ---------- 8. Barra de detalhe ---------- */
 

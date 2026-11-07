@@ -18,13 +18,14 @@ const PAUSAS = `
 11-02 feriado|Finados
 11-15 feriado|Proclamação da República
 11-20 feriado|Consciência Negra
+11-21 pausa|Sem aula: emenda do feriado de 20/11
 `;
 
 const NOTAS = `
 10-24 encontro do professor Diego Guerra: lógica, input e variáveis; entrada, processamento e saída passou para 06/11
 10-31 encontro do professor Diego Guerra: tipos, conversão e as primeiras condicionais (if, elif, else, and); a turma passou a usar o VS Code
 11-06 revisão das decisões com o que faltou: entrada, processamento e saída, bool na prática e o not; a atividade Fechando a conta parou na parte 4
-11-21 sábado do feriadão: sem conteúdo novo, tempo de laboratório e recuperação
+11-27 era em 21/11, que ficou sem aula pela emenda do feriado; os três últimos encontros andaram uma data
 `;
 
 const MESES = ["janeiro","fevereiro","março","abril","maio","junho",
@@ -33,4 +34,4 @@ const DOW = ["seg","ter","qua","qui","sex","sáb","dom"];
 
 /* primeiro e último mês exibidos no calendário */
 const MES_INICIAL = 10;
-const MES_FINAL = 11;
+const MES_FINAL = 12;

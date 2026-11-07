@@ -87,9 +87,12 @@ guarda só feriados e notas. Nunca escreva data dentro de um slide.
 | 5 | sáb 07/11 | Daniel | 3 · As decisões | fim da Fechando a conta, `round`, f-string, menu com aspas triplas; depois do intervalo, listas sem laço |
 | 6 | sex 13/11 | Daniel | 4 · A repetição | atividade de retomada das listas, continuação das listas e o `for` |
 | 7 | sáb 14/11 | Daniel | 4 · A repetição | `while`, `break`, menu repetitivo, jogo de adivinhar o número |
-| 8 | sáb 21/11 | Daniel | 5 · O sistema de pedidos | laboratório e recuperação, sem conteúdo novo (sábado de feriadão, turma pode vir reduzida) |
-| 9 | sex 27/11 | Daniel | 5 · O sistema de pedidos | bitwise curto e aplicado, início do desafio final |
-| 10 | sáb 28/11 | Daniel | 5 · O sistema de pedidos | conclusão e apresentação do desafio final, encerramento |
+| 8 | sex 27/11 | Daniel | 5 · O sistema de pedidos | laboratório e recuperação, sem conteúdo novo |
+| 9 | sáb 28/11 | Daniel | 5 · O sistema de pedidos | bitwise curto e aplicado, início do desafio final |
+| 10 | sex 04/12 | Daniel | 5 · O sistema de pedidos | conclusão e apresentação do desafio final, encerramento |
+
+O sábado 21/11 ficou sem aula, emendado ao feriado de 20/11, e os encontros 8 a 10 andaram uma data:
+eram 21/11, 27/11 e 28/11. O encerramento passou para uma sexta, das 19h às 22h.
 
 As etapas são o agrupamento pedagógico, como os ciclos da UC4. Cada uma responde uma pergunta, e a
 pergunta está em `window.ETAPAS`. Numa referência a encontro futuro dentro de um slide, prefira a etapa

@@ -51,13 +51,13 @@ window.ENCONTROS = [
   { n:  7, data: "2026-11-14", etapa: 4, docente: "daniel", pronto: false,
     titulo: "O laço while, o break e o menu repetitivo",
     foco: "while, break, menu repetitivo, jogo de adivinhar o número" },
-  { n:  8, data: "2026-11-21", etapa: 5, docente: "daniel", pronto: false, recuperacao: true,
+  { n:  8, data: "2026-11-27", etapa: 5, docente: "daniel", pronto: false, recuperacao: true,
     titulo: "Laboratório e recuperação",
     foco: "sem conteúdo novo: desafios de revisão dos encontros 4 a 7, em níveis" },
-  { n:  9, data: "2026-11-27", etapa: 5, docente: "daniel", pronto: false,
+  { n:  9, data: "2026-11-28", etapa: 5, docente: "daniel", pronto: false,
     titulo: "Operações bitwise e o início do desafio final",
     foco: "bitwise curto e aplicado, enunciado do sistema de pedidos no terminal" },
-  { n: 10, data: "2026-11-28", etapa: 5, docente: "daniel", pronto: false, avaliacao: true,
+  { n: 10, data: "2026-12-04", etapa: 5, docente: "daniel", pronto: false, avaliacao: true,
     titulo: "Desafio final: conclusão, apresentação e encerramento",
     foco: "conclusão e apresentação do sistema de pedidos, encerramento do curso" }
 ];

@@ -1,7 +1,7 @@
 # Slides de Fundamentos do Python I
 
 Slides em HTML e cronograma do curso Fundamentos do Python I (Senac Jaraguá do Sul · aperfeiçoamento ·
-30 h · 10 encontros, de 23/10 a 28/11/2026).
+30 h · 10 encontros, de 23/10 a 04/12/2026).
 
 Publicável direto no **GitHub Pages**: sem build, sem dependência, sem framework. A estrutura e o
 sistema visual vieram dos slides da UC4 do mesmo docente.
