@@ -84,8 +84,8 @@ guarda só feriados e notas. Nunca escreva data dentro de um slide.
 | 2 | sáb 24/10 | Diego | 2 · A lógica | **dado:** lógica, `input`, variáveis |
 | 3 | sáb 31/10 | Diego | 2 · A lógica | **dado:** os quatro tipos, conversão, `if`/`elif`/`else`, `and`, um pouco de `or` |
 | 4 | sex 06/11 | Daniel | 3 · As decisões | entrada, processamento e saída, `bool` na prática, comparadores, `not`, revisão do `if`, atividades em níveis |
-| 5 | sáb 07/11 | Daniel | 3 · As decisões | f-strings, `round`, par ou ímpar com `%`; depois do intervalo, listas sem laço |
-| 6 | sex 13/11 | Daniel | 4 · A repetição | o `for` percorrendo o pedido, `continue` |
+| 5 | sáb 07/11 | Daniel | 3 · As decisões | fim da Fechando a conta, `round`, f-string, menu com aspas triplas; depois do intervalo, listas sem laço |
+| 6 | sex 13/11 | Daniel | 4 · A repetição | atividade de retomada das listas, continuação das listas e o `for` |
 | 7 | sáb 14/11 | Daniel | 4 · A repetição | `while`, `break`, menu repetitivo, jogo de adivinhar o número |
 | 8 | sáb 21/11 | Daniel | 5 · O sistema de pedidos | laboratório e recuperação, sem conteúdo novo (sábado de feriadão, turma pode vir reduzida) |
 | 9 | sex 27/11 | Daniel | 5 · O sistema de pedidos | bitwise curto e aplicado, início do desafio final |
@@ -163,6 +163,9 @@ o cliente que gastou mais de R$ 100 e não ganhou o desconto.
 - **Toda prática é individual.** Nada de "conte para quem senta ao lado" nem "explique ao colega": o
   docente pediu assim no encontro 4. A resposta que antes ia para o colega vai para um comentário no
   código. O momento coletivo é a correção no projetor, conduzida pelo professor.
+- **Ritmo da semana:** o sábado apresenta o conteúdo novo, e a sexta seguinte abre retomando esse
+  conteúdo com uma atividade, como o encontro 4 fez com as decisões. Depois da retomada, a sexta segue
+  com o próximo assunto.
 - **Sem slide de intervalo.** O docente para quando o horário pede, sem correr para alcançar um slide.
 - **A atividade do fim não repete os exemplos dos slides.** A turma testa os exemplos enquanto a aula
   anda, e chega na atividade já com aquilo pronto. A atividade usa regras novas (no encontro 4: combo,
@@ -203,8 +206,8 @@ introduz.
 | 2 | (Diego) lógica; `input`, `print` com várias partes separadas por vírgula; variável, atribuição. Entrada, processamento e saída **não** foi dado |
 | 3 | (Diego) `int`, `float`, `str`, `bool` (o `bool` sem exemplo prático); `input` com conversão por `int()` e `float()`, usado bastante; `if`, `elif`, `else` "em parte"; `and` bastante, `or` só comentado com exemplos. **Não confirmado:** `//`, `%`, `**`, constante, fluxograma e 5Qs |
 | 4 | entrada, processamento e saída; constante em MAIÚSCULAS; `True` e `False` em variável, `type()` dando `bool`; `== != > < >= <=`; `or` na prática e `not` (devagar: o Diego avisou que confunde); revisão do `if`/`elif`/`else`, a ordem das condições, o recuo; `=` contra `==`. Atividade única "Fechando a conta", em quatro partes (pedido, combo, pagamento com troco, bônus), com a solução em `docente/solucoes/conta.py` |
-| 5 | f-string, inclusive `{valor:.2f}`; `round` (o gancho: R$ 119 com 10% de desconto dá `107.10000000000001`); par ou ímpar com `%`; listas: literal, índice, `append`, `remove`, `len`, `sum`, sem laço |
-| 6 | `for item in lista` percorrendo o pedido; `continue` |
+| 5 | `round(valor, 2)` (o gancho: 1 pastel e 1 caldo no pix dá `11.875`, e 2 de cada dá `38.949999999999996`); f-string, primeiro sem e depois com `:.2f`; texto de várias linhas com aspas triplas, para menu; opção do menu comparada como texto (`opcao == "1"`); listas: literal, índice a partir do zero, `IndexError`, `append`, `remove`, `ValueError`, `in` e `not in`, `len`, `sum`, sem laço. Atividade: a lista de compras (`docente/solucoes/compras.py`). **Par ou ímpar com `%` saiu** e ainda não tem lugar |
+| 6 | retomada das listas numa atividade; `for item in lista` percorrendo o pedido; `continue` |
 | 7 | `while`, condição de parada, `break`, menu repetitivo; `import random` e `random.randint` para o jogo de adivinhar |
 | 8 | nada novo: desafios de revisão dos encontros 4 a 7, em níveis de dificuldade |
 | 9 | `&`, `\|`, `bin()`; opções combinadas num número; par ou ímpar com `& 1`; enunciado do desafio final |

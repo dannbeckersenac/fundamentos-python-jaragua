@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 05 · Valores em dinheiro e primeiras listas · Fundamentos do Python I</title>
+<link rel="stylesheet" href="../assets/css/slides.css">
+<link rel="stylesheet" href="../assets/css/encontro.css">
+</head>
+<body data-encontro="5">
+<div class="palco">
+
+<!-- ===================== ABERTURA ===================== -->
+
+<!-- 1 · CAPA -->
+<section class="slide capa">
+  <img class="logo" src="../assets/img/senac.png" alt="Senac">
+  <div class="corpo">
+    <p class="numero">Encontro 05</p>
+    <h1>Valores em dinheiro e primeiras listas</h1>
+    <p class="sub">Hoje vamos ajustar os valores da conta, montar o menu de pagamento e começar a usar listas.</p>
+  </div>
+  <img class="python" src="../assets/img/python-logo.svg" alt="">
+  <div class="rodape"><span>Etapa 3 · As decisões</span><span>Fundamentos do Python I · Senac Jaraguá do Sul</span></div>
+</section>
+
+<!-- 2 · ONDE A GENTE PAROU -->
+<section class="slide">
+  <div class="corpo">
+    <h2>A conta do encontro anterior</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Ontem vocês chegaram à parte 4 da atividade <b>Fechando a conta</b>, com o bônus de sugerir um caldo.</p>
+          <p class="intro">Vamos terminar o programa e ajustar como ele mostra os valores em dinheiro.</p>
+        </div>
+        <img src="../assets/img/icones/checklist.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 3 · TERMINAR A PARTE 4 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Aquecimento · 15 minutos</p>
+    <h2>Terminar a conta de ontem</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Abrir o arquivo <code>conta.py</code> na pasta do curso.</li>
+        <li>Terminar a parte 4. Sugerir um caldo se o cliente não tiver pedido nenhum.</li>
+        <li>Executar com 1 pastel, 1 caldo e nenhum sorvete. Escolher <code>pix</code> no pagamento.</li>
+        <li>Executar com 2 de cada item e pagamento no <code>pix</code>.</li>
+        <li>Anotar os dois totais num comentário do <code>conta.py</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 1 · ROUND E F-STRING ===================== -->
+
+<!-- 4 · PERGUNTA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/duvida.png" alt="">
+        <div>
+          <p>O total deu R$ 11.875. Quanto cobrar?</p>
+          <p>Com 2 de cada item no pix, apareceu <code>38.949999999999996</code>. De onde vieram essas casas?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 5 · DOIS PROBLEMAS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Por que aparecem tantas casas decimais?</h2>
+    <div class="miolo">
+      <div class="cartoes n2">
+        <div class="cartao"><span class="t">O desconto gerou três casas</span><span class="d">Com 5% de desconto, R$ 12,50 vira R$ 11,875. Para cobrar em reais e centavos, precisamos arredondar.</span><p><code>11.875</code></p></div>
+        <div class="cartao"><span class="t">O float guarda uma aproximação</span><span class="d">Alguns decimais não têm representação exata em binário. O float guarda uma aproximação, que pode aparecer no resultado.</span><p><code>38.949999999999996</code></p></div>
+      </div>
+      <p class="destaque">Testar <code>print(0.1 + 0.2)</code> no terminal ou no shell. O resultado também mostra essa aproximação.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 6 · ROUND -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Arredondar com round</h2>
+    <div class="janelas">
+      <div class="codigo idle">
+        <div class="arquivo">arredonda.py</div>
+<pre><span class="fn">print</span>(<span class="fn">round</span>(<span class="num">11.875</span>, <span class="num">2</span>))
+<span class="fn">print</span>(<span class="fn">round</span>(<span class="num">38.949999999999996</span>, <span class="num">2</span>))
+<span class="fn">print</span>(<span class="fn">round</span>(<span class="num">28.0</span>, <span class="num">2</span>))</pre>
+      </div>
+      <div class="codigo idle shell">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">11.88</span>
+<span class="saida">38.95</span>
+<span class="saida">28.0</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>Em <code>round(valor, 2)</code>, o primeiro argumento é o valor. O segundo indica as casas decimais.</li>
+      <li>O resultado foi arredondado. Para mostrar <code>28.00</code> no lugar de <code>28.0</code>, vamos ajustar a formatação.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 7 · F-STRING, A VERSÃO SIMPLES -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Colocar valores no texto com f-string</h2>
+    <div class="miolo">
+      <div class="comparacao">
+        <div class="lado">
+          <span class="rotulo">Como vocês fazem hoje</span>
+          <div class="codigo idle">
+<pre><span class="fn">print</span>(<span class="str">"Total: R$"</span>, total)</pre>
+          </div>
+        </div>
+        <div class="lado">
+          <span class="rotulo">Com f-string</span>
+          <div class="codigo idle">
+<pre><span class="fn">print</span>(<span class="str">f"Total: R$ {total}"</span>)</pre>
+          </div>
+        </div>
+      </div>
+      <ul class="lista">
+        <li>O <code>f</code> antes das aspas permite colocar valores dentro do texto.</li>
+        <li>O valor de <code>total</code> aparece no lugar de <code>{total}</code>. As chaves delimitam essa parte.</li>
+        <li>As duas versões mostram o total. Na f-string, escrevemos a frase inteira entre as aspas.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 8 · F-STRING COM DUAS CASAS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Mostrar duas casas decimais com :.2f</h2>
+    <div class="janelas">
+      <div class="codigo idle">
+        <div class="arquivo">dinheiro.py</div>
+<pre>total = <span class="num">28.0</span>
+<span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)
+total = <span class="num">11.875</span>
+<span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)</pre>
+      </div>
+      <div class="codigo idle shell">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">Total: R$ 28.00</span>
+<span class="saida">Total: R$ 11.88</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>O <code>:.2f</code> formata o valor com duas casas depois do ponto.</li>
+      <li>A formatação acrescenta zeros ou arredonda a exibição conforme o valor.</li>
+      <li>A variável mantém o valor original. A formatação muda apenas o texto mostrado.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 9 · PRÁTICA DO CICLO 1 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Ajustar os valores da conta</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>No <code>conta.py</code>, usar f-string com <code>:.2f</code> nos valores em dinheiro.</li>
+        <li>Guardar o total do pix com <code>round(valor, 2)</code> depois de aplicar o desconto.</li>
+        <li>Executar com 1 pastel e 1 caldo no pix. Conferir o total <code>11.88</code>.</li>
+        <li>Executar com 2 de cada item no pix. Conferir o total <code>38.95</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 2 · O MENU ===================== -->
+
+<!-- 10 · O PROBLEMA DO PAGAMENTO DIGITADO -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/pessoa-duvida.png" alt="">
+        <div>
+          <p>Vocês digitaram <code>Pix</code> ou <code>cartão</code> e o programa recusou?</p>
+          <p><code>"Pix"</code> e <code>"pix"</code> são textos diferentes. Com opções numeradas, o cliente digita só o número.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 11 · ASPAS TRIPLAS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Escrever várias linhas com aspas triplas</h2>
+    <div class="janelas">
+      <div class="codigo idle">
+        <div class="arquivo">menu.py</div>
+<pre><span class="fn">print</span>(<span class="str">"""
+Forma de pagamento:
+1 - Pix (5% de desconto)
+2 - Cartão
+3 - Dinheiro
+"""</span>)</pre>
+      </div>
+      <div class="codigo idle shell">
+        <div class="arquivo">Saída</div>
+<pre>
+<span class="saida">Forma de pagamento:</span>
+<span class="saida">1 - Pix (5% de desconto)</span>
+<span class="saida">2 - Cartão</span>
+<span class="saida">3 - Dinheiro</span>
+</pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>Abrimos e fechamos o texto com três aspas. As quebras de linha fazem parte do texto.</li>
+      <li>Assim, um único <code>print</code> mostra as linhas do menu.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 12 · CADA OPÇÃO É UM NÚMERO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Ler a opção escolhida no menu</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">trecho do conta.py, logo depois do menu</div>
+<pre>opcao = <span class="fn">input</span>(<span class="str">"Escolha 1, 2 ou 3: "</span>)
+
+<span class="kw">if</span> opcao == <span class="str">"1"</span>:
+    total = <span class="fn">round</span>(total * <span class="num">0.95</span>, <span class="num">2</span>)
+    <span class="fn">print</span>(<span class="str">f"Total no pix: R$ {total:.2f}"</span>)
+<span class="kw">elif</span> opcao == <span class="str">"2"</span>:
+    <span class="fn">print</span>(<span class="str">f"Total no cartão: R$ {total:.2f}"</span>)</pre>
+    </div>
+    <p class="dica">O <code>input</code> devolve texto. Por isso comparamos com <code>"1"</code>, entre aspas. A comparação <code>"1" == 1</code> dá <code>False</code>.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 13 · PRÁTICA DO CICLO 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 15 minutos</p>
+    <h2>Criar o menu de pagamento</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>No <code>conta.py</code>, trocar a pergunta do pagamento por um menu com aspas triplas.</li>
+        <li>Comparar a opção com <code>"1"</code>, <code>"2"</code> e <code>"3"</code>. Para outra resposta, mostrar <code>Opção inválida.</code></li>
+        <li>Usar aspas triplas para mostrar o cardápio do início num único <code>print</code>.</li>
+        <li>Testar 1 pastel e 1 caldo com a opção <code>3</code> e R$ 20 recebidos. Conferir o troco <code>R$ 7.50</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 3 · LISTAS ===================== -->
+
+<!-- 14 · A DOR: UMA VARIÁVEL PARA CADA ITEM -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E se o cardápio tiver 20 itens?</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">trecho do conta.py</div>
+<pre>pasteis = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+caldos = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos caldos? "</span>))
+sorvetes = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos sorvetes? "</span>))
+
+subtotal = pasteis * PRECO_PASTEL + caldos * PRECO_CALDO + sorvetes * PRECO_SORVETE</pre>
+    </div>
+    <ul class="lista">
+      <li>Nesse código, cada item tem uma variável de quantidade e um <code>input</code>.</li>
+      <li>Para incluir 20 itens, teríamos que aumentar também a expressão do subtotal.</li>
+    </ul>
+    <p class="destaque">Podemos guardar vários itens juntos, como os pedidos anotados numa comanda.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 15 · A LISTA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Guardar os itens numa lista</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <div class="codigo idle">
+            <div class="arquivo">comanda.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+<span class="fn">print</span>(comanda)
+<span class="fn">print</span>(<span class="fn">len</span>(comanda))</pre>
+          </div>
+          <ul class="lista">
+            <li>Criamos a lista com colchetes e separamos os valores com vírgulas.</li>
+            <li><code>len(comanda)</code> conta os itens da lista. Neste exemplo, o resultado é <code>3</code>.</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/checklist.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 16 · ÍNDICE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>A primeira posição da lista é zero</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">comanda.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+<span class="fn">print</span>(comanda[<span class="num">0</span>])
+<span class="fn">print</span>(comanda[<span class="num">2</span>])
+<span class="fn">print</span>(comanda[<span class="num">5</span>])</pre>
+    </div>
+    <div class="codigo idle shell compacto">
+      <div class="arquivo">Saída</div>
+<pre><span class="saida">pastel</span>
+<span class="saida">sorvete</span>
+<span class="erro">IndexError: list index out of range</span></pre>
+    </div>
+    <ul class="lista">
+      <li>Chamamos a posição de índice. <code>[0]</code> acessa o primeiro item e <code>[2]</code> acessa o terceiro.</li>
+      <li>O índice <code>5</code> não existe nessa lista. Por isso aparece <code>IndexError</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 17 · APPEND -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Acrescentar um item com append</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · anota.py</div>
+<pre>comanda = []
+item = <span class="fn">input</span>(<span class="str">"O que vai querer? "</span>)
+comanda.append(item)
+item = <span class="fn">input</span>(<span class="str">"Mais alguma coisa? "</span>)
+comanda.append(item)
+<span class="fn">print</span>(<span class="str">f"Comanda: {comanda}"</span>)</pre>
+    </div>
+    <ol class="passos curta">
+      <li>Criar <code>anota.py</code> na pasta do curso com o código do exemplo.</li>
+      <li>Executar o arquivo e responder <code>pastel</code>, depois <code>caldo</code>.</li>
+      <li>Conferir a saída <code>Comanda: ['pastel', 'caldo']</code>.</li>
+    </ol>
+    <p class="dica"><code>[]</code> cria uma lista vazia. Cada chamada de <code>append</code> acrescenta um item no final.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 18 · REMOVE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Retirar um item com remove</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">comanda.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+comanda.remove(<span class="str">"caldo"</span>)
+<span class="fn">print</span>(comanda)
+comanda.remove(<span class="str">"pudim"</span>)</pre>
+    </div>
+    <div class="codigo idle shell compacto">
+      <div class="arquivo">Saída</div>
+<pre><span class="saida">['pastel', 'sorvete']</span>
+<span class="erro">ValueError: list.remove(x): x not in list</span></pre>
+    </div>
+    <ul class="lista">
+      <li>O <code>remove</code> procura o valor informado e retira a primeira ocorrência.</li>
+      <li>Se o valor não estiver na lista, aparece <code>ValueError</code>. Vamos conferir antes de remover.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 19 · IN E NOT IN -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Conferir se o item está na lista com in</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · desiste.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+item = <span class="fn">input</span>(<span class="str">"Qual item vai tirar? "</span>)
+
+<span class="kw">if</span> item <span class="kw">in</span> comanda:
+    comanda.remove(item)
+    <span class="fn">print</span>(<span class="str">f"Comanda: {comanda}"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Esse item não está na comanda."</span>)</pre>
+    </div>
+    <ul class="lista">
+      <li><code>item in comanda</code> dá <code>True</code> quando o valor está na lista e <code>False</code> quando não está.</li>
+      <li><code>"caldo" not in comanda</code> dá <code>True</code> se não houver caldo na lista.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 20 · LISTA DE NÚMEROS E SUM -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Somar os valores da lista com sum</h2>
+    <div class="janelas">
+      <div class="codigo idle">
+        <div class="arquivo">precos.py</div>
+<pre>precos = [<span class="num">8.5</span>, <span class="num">6.0</span>, <span class="num">7.0</span>]
+total = <span class="fn">sum</span>(precos)
+<span class="fn">print</span>(<span class="str">f"Itens: {len(precos)}"</span>)
+<span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)</pre>
+      </div>
+      <div class="codigo idle shell">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">Itens: 3</span>
+<span class="saida">Total: R$ 21.50</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>Nesta lista, guardamos preços. <code>sum(precos)</code> soma os valores.</li>
+      <li>Se acrescentarmos preços à lista, a chamada de <code>sum</code> continua igual.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== ATIVIDADE: A LISTA DE COMPRAS ===================== -->
+
+<!-- 21 · GERADOR DE DESAFIOS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Exercícios para continuar praticando</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Abrir o gerador de desafios pelo QR code ao lado.</p>
+          <p class="intro">Vocês podem usar os exercícios quando terminarem a atividade ou para praticar em casa.</p>
+          <p class="dica">Para abrir no computador, usar <code>claude.ai/artifact/BfMtVw7XiYYgwEYig3t44w</code></p>
+        </div>
+        <img class="qr" src="../assets/img/qr-gerador-desafios.svg" alt="QR code do gerador de desafios">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 22 · A ATIVIDADE DE HOJE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Atividade: montar a lista de compras</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Vamos criar <code>compras.py</code> para registrar o que falta comprar na lanchonete e calcular os gastos.</p>
+          <ul class="lista">
+            <li>Fazer as quatro partes na ordem, cada um no seu arquivo.</li>
+            <li>Executar e conferir cada parte antes de começar a próxima.</li>
+            <li>Mostrar os valores em dinheiro com duas casas decimais.</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/dispensa.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 23 · PARTES 1 E 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">A lista de compras · partes 1 e 2</p>
+    <h2>Atualizar a lista de compras</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt"><b>Acrescentar uma compra.</b> Começar com <code>["farinha", "queijo", "carne"]</code>. Pedir mais um item e acrescentar à lista. Mostrar a lista e a quantidade de itens.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt"><b>Retirar o que já foi comprado.</b> Pedir o nome do item. Se estiver na lista, remover e mostrar o que falta. Se não estiver, mostrar <code>Isso não estava na lista.</code></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 24 · PARTES 3 E 4 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">A lista de compras · partes 3 e 4</p>
+    <h2>Calcular os gastos</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">3</span><span class="txt"><b>Somar as compras.</b> Pedir o preço de três compras. Guardar os valores numa lista e mostrar o total gasto.</span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt"><b>Bônus.</b> Pedir o orçamento do dia. Comparar com o gasto e mostrar quanto passou do orçamento ou quanto sobrou.</span></div>
+      </div>
+      <p class="dica">Testar os preços <code>12.50</code>, <code>30</code> e <code>7.25</code> com orçamento de <code>45</code>. O gasto passa do orçamento em R$ 4.75.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 25 · RECAPITULAÇÃO -->
+<section class="slide escuro">
+  <div class="corpo">
+    <h2>O que vocês praticaram hoje</h2>
+    <ul class="recap">
+      <li><code>round(valor, 2)</code> devolve o valor arredondado. <code>:.2f</code> mostra duas casas no texto.</li>
+      <li>Na f-string, o <code>f</code> vem antes das aspas e a variável vai entre <b>chaves</b>.</li>
+      <li>Usamos aspas triplas para escrever as linhas do menu num único texto.</li>
+      <li>A lista reúne vários valores. O índice do primeiro item é zero.</li>
+      <li>Praticamos como acrescentar e remover itens, conferir se estão na lista, contar e somar.</li>
+    </ul>
+    <p class="proximo"><b>Sexta, às 19h:</b> vamos retomar as listas numa atividade. Depois, usar o <code>for</code> para percorrer os itens.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+</div>
+<nav class="barra" id="barra"></nav>
+<script src="../assets/js/aulas.js"></script>
+<script src="../assets/js/slides.js"></script>
+</body>
+</html>
