@@ -221,3 +221,16 @@ th { font-family: var(--sans); font-size: 22px; letter-spacing: 0; text-transfor
 
 /* QR code: fundo branco em volta, para o celular ler do projetor */
 .lado-icone > img.qr { background: #FFFFFF; border-radius: 14px; padding: 10px; box-shadow: var(--sombra); }
+
+/* ---------- fluxograma da repetição (encontros 6 e 7) ----------
+   SVG desenhado em 1152 de largura, na escala 1:1 do .corpo, para o
+   texto sair no mesmo tamanho do resto do slide. */
+
+.fluxograma svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fluxograma text { font-family: var(--sans); font-size: 27px; fill: var(--escuro); text-anchor: middle; }
+.fluxograma .caixa  { fill: #FFFFFF; stroke: var(--escuro); stroke-width: 3; }
+.fluxograma .ponta  { fill: var(--escuro); }
+.fluxograma .ponta + text, .fluxograma text.claro { fill: #FFFFFF; font-weight: 700; }
+.fluxograma .decisao { fill: var(--azul-claro); stroke: var(--azul); stroke-width: 3; }
+.fluxograma .seta { fill: none; stroke: var(--cinza-texto); stroke-width: 3; }
+.fluxograma .rotulo { font-size: 25px; font-weight: 700; fill: var(--azul); }

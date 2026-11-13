@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 06 · Retomada das listas e o laço for · Fundamentos do Python I</title>
+<link rel="stylesheet" href="../assets/css/slides.css">
+<link rel="stylesheet" href="../assets/css/encontro.css">
+</head>
+<body data-encontro="6">
+<div class="palco">
+
+<!-- ===================== ABERTURA ===================== -->
+
+<!-- 1 · CAPA -->
+<section class="slide capa">
+  <img class="logo" src="../assets/img/senac.png" alt="Senac">
+  <div class="corpo">
+    <p class="numero">Encontro 06</p>
+    <h1>Retomada das listas e o laço for</h1>
+    <p class="sub">Vamos revisar as listas e usar o for para mostrar os itens da comanda.</p>
+  </div>
+  <img class="python" src="../assets/img/python-logo.svg" alt="">
+  <div class="rodape"><span>Etapa 4 · A repetição</span><span>Fundamentos do Python I · Senac Jaraguá do Sul</span></div>
+</section>
+
+<!-- 2 · RETOMADA DAS LISTAS -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Retomada · 20 minutos</p>
+    <h2>A comanda da mesa 5</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>mesa5.py</code> com a lista <code>["pastel", "caldo", "pastel", "sorvete"]</code>.</li>
+        <li>Mostre o primeiro e o último item da comanda usando o índice.</li>
+        <li>O cliente desistiu de um pastel. Remova um e mostre como ficou a comanda.</li>
+        <li>Peça mais um item com <code>input</code>. Se ele já estiver na comanda, mostre <code>Já está na comanda.</code> Caso contrário, acrescente o item.</li>
+        <li>Mostre quantos itens ficaram. Teste com <code>coxinha</code>: deve aparecer <code>Itens: 4</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 3 · CORREÇÃO DA RETOMADA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Qual pastel o remove tirou?</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">trecho do mesa5.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"pastel"</span>, <span class="str">"sorvete"</span>]
+comanda.remove(<span class="str">"pastel"</span>)
+<span class="fn">print</span>(comanda)</pre>
+    </div>
+    <div class="codigo idle shell compacto">
+      <div class="arquivo">Saída</div>
+<pre><span class="saida">['caldo', 'pastel', 'sorvete']</span></pre>
+    </div>
+    <ul class="lista">
+      <li>O <code>remove</code> tirou o primeiro pastel da lista. O segundo continua lá.</li>
+      <li>O sorvete estava no índice <code>3</code>. Depois da remoção, ficou no índice <code>2</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 1 · O FOR ===================== -->
+
+<!-- 4 · PERGUNTA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/duvida.png" alt="">
+        <div>
+          <p>Como mostrar cada item da comanda numa linha?</p>
+          <p>Uma mesa pediu 3 itens. Outra pediu 12. Vamos escrever um print para cada um?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 5 · UM PRINT PARA CADA POSIÇÃO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Um print para cada posição</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">mostra.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+<span class="fn">print</span>(comanda[<span class="num">0</span>])
+<span class="fn">print</span>(comanda[<span class="num">1</span>])
+<span class="fn">print</span>(comanda[<span class="num">2</span>])
+<span class="fn">print</span>(comanda[<span class="num">3</span>])</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">pastel</span>
+<span class="saida">caldo</span>
+<span class="saida">sorvete</span>
+<span class="erro">IndexError: list index out of range</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>A lista só tem os índices <code>0</code>, <code>1</code> e <code>2</code>. Ao tentar acessar o <code>3</code>, aparece o erro.</li>
+      <li>O mesmo <code>print</code> aparece várias vezes. Só muda a posição.</li>
+    </ul>
+    <p class="destaque">Como repetir o <code>print</code> para todos os itens da lista?</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 6 · FLUXOGRAMA DO FOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O fluxograma da repetição</h2>
+    <div class="miolo">
+      <div class="fluxograma">
+        <svg viewBox="0 0 1152 380" role="img" aria-label="Fluxograma: enquanto houver item na comanda, pegar o próximo e mostrar; quando acabar, fim">
+          <defs>
+            <marker id="seta-for" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+            </marker>
+          </defs>
+          <rect class="ponta" x="0" y="140" width="150" height="64" rx="32"/>
+          <text x="75" y="181">Início</text>
+          <path class="seta" d="M150,172 H194" marker-end="url(#seta-for)"/>
+          <polygon class="decisao" points="200,172 380,82 560,172 380,262"/>
+          <text x="380" y="166">Ainda tem item</text>
+          <text x="380" y="198">na comanda?</text>
+          <path class="seta" d="M560,172 H610" marker-end="url(#seta-for)"/>
+          <text class="rotulo" x="586" y="158">sim</text>
+          <rect class="caixa" x="616" y="136" width="280" height="72" rx="8"/>
+          <text x="756" y="181">pegar o próximo item</text>
+          <path class="seta" d="M896,172 H936" marker-end="url(#seta-for)"/>
+          <rect class="caixa" x="942" y="136" width="210" height="72" rx="8"/>
+          <text x="1047" y="181">mostrar o item</text>
+          <path class="seta" d="M1047,136 V44 H380 V76" marker-end="url(#seta-for)"/>
+          <text class="rotulo" x="713" y="32">volta e pergunta de novo</text>
+          <path class="seta" d="M380,262 V304" marker-end="url(#seta-for)"/>
+          <text class="rotulo" x="410" y="292">não</text>
+          <rect class="ponta" x="305" y="310" width="150" height="64" rx="32"/>
+          <text x="380" y="351">Fim</text>
+        </svg>
+      </div>
+      <p class="dica">Siga a seta de volta: o programa pega outro item e mostra na tela. Quando a lista acaba, ele sai do laço.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 7 · O FOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Percorrer a lista com for</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">percorre.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+<span class="kw">for</span> item <span class="kw">in</span> comanda:
+    <span class="fn">print</span>(<span class="str">"-"</span>, item)
+<span class="fn">print</span>(<span class="str">"Fim da comanda"</span>)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">- pastel</span>
+<span class="saida">- caldo</span>
+<span class="saida">- sorvete</span>
+<span class="saida">Fim da comanda</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li><code>for item in comanda:</code> repete o bloco uma vez para cada item da lista.</li>
+      <li>A cada volta, <code>item</code> recebe o próximo valor: <code>"pastel"</code>, depois <code>"caldo"</code>, depois <code>"sorvete"</code>.</li>
+      <li>Essa repetição se chama <b>laço</b>. O bloco do laço é o trecho recuado, como no <code>if</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 8 · MÃO NA MASSA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Testar o for</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <ol class="passos">
+          <li>Crie <code>percorre.py</code> na pasta do curso com o código do exemplo.</li>
+          <li>Execute o arquivo: ▶ no VS Code, F5 no IDLE.</li>
+          <li>Acrescente <code>"pastel"</code> no fim da lista, sem mexer no <code>for</code>.</li>
+          <li>Execute de novo e confira a linha <code>- pastel</code> antes de <code>Fim da comanda</code>.</li>
+          <li>Recue o último <code>print</code> com Tab e execute. Agora <code>Fim da comanda</code> aparece depois de cada item.</li>
+        </ol>
+        <img src="../assets/img/icones/notebook-codigo.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 9 · O RECUO DECIDE O QUE REPETE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O recuo decide o que repete</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">percorre.py, com o último print recuado</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+<span class="kw">for</span> item <span class="kw">in</span> comanda:
+    <span class="fn">print</span>(<span class="str">"-"</span>, item)
+    <span class="fn">print</span>(<span class="str">"Fim da comanda"</span>)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">- pastel</span>
+<span class="saida">Fim da comanda</span>
+<span class="saida">- caldo</span>
+<span class="saida">Fim da comanda</span>
+<span class="saida">- sorvete</span>
+<span class="saida">Fim da comanda</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>Com o recuo, <code>print("Fim da comanda")</code> fica dentro do laço e roda a cada item.</li>
+      <li>Para mostrar a mensagem só depois de todos os itens, deixe esse <code>print</code> sem recuo.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 10 · ERROS COMUNS NO FOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Dois erros comuns no for</h2>
+    <div class="miolo">
+      <table>
+        <thead><tr><th>O que aconteceu</th><th>A última linha do erro</th></tr></thead>
+        <tbody>
+          <tr><td>Faltaram os dois-pontos no fim da linha do <code>for</code></td><td><code>SyntaxError: expected ':'</code></td></tr>
+          <tr><td>A linha de dentro do laço ficou sem recuo</td><td><code>IndentationError: expected an indented block after 'for' statement on line 2</code></td></tr>
+        </tbody>
+      </table>
+      <p class="dica">São os mesmos erros do <code>if</code>. A linha do <code>for</code> termina com <code>:</code> e o bloco fica recuado embaixo dela.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 11 · PRÁTICA DO CICLO 1 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Mostrar os preços da comanda</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>precos.py</code> com a lista <code>[8.5, 6.0, 7.0, 8.5]</code>.</li>
+        <li>Percorra a lista com <code>for</code> e mostre cada preço com f-string e duas casas decimais.</li>
+        <li>Depois do laço, mostre quantos preços a lista tem.</li>
+        <li>Confira a saída: <code>R$ 8.50</code>, <code>R$ 6.00</code>, <code>R$ 7.00</code>, <code>R$ 8.50</code> e <code>4 itens</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 2 · CONTAR, SOMAR E PULAR ===================== -->
+
+<!-- 12 · PERGUNTA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/cozinha.png" alt="">
+        <div>
+          <p>Quantos pastéis a cozinha precisa fritar?</p>
+          <p>A comanda tem pastel, caldo, pastel, sorvete e pastel. O <code>len</code> dá 5, porque conta tudo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 13 · CONTADOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Contar com uma variável</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · fritar.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"pastel"</span>, <span class="str">"sorvete"</span>, <span class="str">"pastel"</span>]
+pasteis = <span class="num">0</span>
+<span class="kw">for</span> item <span class="kw">in</span> comanda:
+    <span class="kw">if</span> item == <span class="str">"pastel"</span>:
+        pasteis = pasteis + <span class="num">1</span>
+<span class="fn">print</span>(<span class="str">f"Pastéis para fritar: {pasteis}"</span>)</pre>
+    </div>
+    <ul class="lista">
+      <li><code>pasteis = 0</code> cria o contador antes do laço.</li>
+      <li>A cada pastel, o contador aumenta 1. O <code>if</code> fica dentro do <code>for</code>, com mais um recuo.</li>
+      <li>O <code>print</code> fica fora do laço e mostra <code>Pastéis para fritar: 3</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 14 · ACUMULADOR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Somar os preços item a item</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">soma.py</div>
+<pre>precos = [<span class="num">8.5</span>, <span class="num">6.0</span>, <span class="num">8.5</span>, <span class="num">7.0</span>]
+total = <span class="num">0</span>
+<span class="kw">for</span> preco <span class="kw">in</span> precos:
+    total = total + preco
+<span class="fn">print</span>(<span class="str">f"No laço: R$ {total:.2f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Com sum: R$ {sum(precos):.2f}"</span>)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">No laço: R$ 30.00</span>
+<span class="saida">Com sum: R$ 30.00</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>O total começa em zero. A cada volta, recebe mais um preço.</li>
+      <li>O <code>sum</code> também dá R$ 30,00. Com o laço, podemos usar um <code>if</code> para somar só alguns preços.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 15 · ERRO: SEM VALOR INICIAL -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E se faltar o total = 0?</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">soma.py, sem o valor inicial</div>
+<pre>precos = [<span class="num">8.5</span>, <span class="num">6.0</span>, <span class="num">8.5</span>, <span class="num">7.0</span>]
+<span class="kw">for</span> preco <span class="kw">in</span> precos:
+    total = total + preco
+<span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="erro">NameError: name 'total' is not defined</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>Na primeira volta, <code>total + preco</code> tenta usar uma variável que ainda não existe.</li>
+      <li>O contador e o acumulador precisam de um valor inicial, antes do <code>for</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 16 · ERRO: PRINT DENTRO DO LAÇO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E se o print ficar dentro do laço?</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">soma.py, com o print recuado</div>
+<pre>precos = [<span class="num">8.5</span>, <span class="num">6.0</span>, <span class="num">8.5</span>, <span class="num">7.0</span>]
+total = <span class="num">0</span>
+<span class="kw">for</span> preco <span class="kw">in</span> precos:
+    total = total + preco
+    <span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">Total: R$ 8.50</span>
+<span class="saida">Total: R$ 14.50</span>
+<span class="saida">Total: R$ 23.00</span>
+<span class="saida">Total: R$ 30.00</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>O programa roda, mas mostra uma soma parcial a cada volta.</li>
+      <li>Para mostrar só o total final, coloque o <code>print</code> fora do laço.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 17 · PRÁTICA DO CICLO 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>Os itens acima de R$ 7</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>acima.py</code> com a lista <code>[8.5, 6.0, 8.5, 7.0, 6.0]</code>.</li>
+        <li>Antes do laço, crie um contador e uma variável para a soma. Os dois começam em zero.</li>
+        <li>Dentro do laço, conte e some só os preços maiores que 7.</li>
+        <li>Depois do laço, mostre os dois resultados.</li>
+        <li>Confira a saída: <code>2 itens acima de R$ 7</code> e <code>Soma: R$ 17.00</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 18 · A COMANDA DA COZINHA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/pessoa-duvida.png" alt="">
+        <div>
+          <p>Por que o caldo aparece na comanda da cozinha?</p>
+          <p>O caldo sai pronto do balcão. A cozinha precisa ver só o que ela prepara.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 19 · CONTINUE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Pular um item com continue</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">exemplo do professor · cozinha.py</div>
+<pre>comanda = [<span class="str">"pastel"</span>, <span class="str">"caldo"</span>, <span class="str">"sorvete"</span>]
+<span class="fn">print</span>(<span class="str">"Para a cozinha:"</span>)
+<span class="kw">for</span> item <span class="kw">in</span> comanda:
+    <span class="kw">if</span> item == <span class="str">"caldo"</span>:
+        <span class="kw">continue</span>
+    <span class="fn">print</span>(<span class="str">"-"</span>, item)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">Para a cozinha:</span>
+<span class="saida">- pastel</span>
+<span class="saida">- sorvete</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>O <code>continue</code> pula o resto da volta e passa para o próximo item.</li>
+      <li>Quando o item é <code>"caldo"</code>, o <code>print</code> de baixo não roda. O laço segue com o sorvete.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 20 · PRÁTICA DO CONTINUE -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 10 minutos</p>
+    <h2>A cozinha também não faz sorvete</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>cozinha.py</code> com o código do exemplo e execute.</li>
+        <li>Acrescente <code>"caldo"</code> no fim da lista. Execute e confira que ele não aparece.</li>
+        <li>O sorvete também sai do balcão. Use <code>or</code> na condição para pular esse item também.</li>
+        <li>Confira a saída: <code>Para a cozinha:</code> e, embaixo, só <code>- pastel</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== ATIVIDADE: FECHANDO A COMANDA ===================== -->
+
+<!-- 21 · A ATIVIDADE DE HOJE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Atividade: fechar a comanda</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Crie <code>comanda.py</code> para calcular a conta a partir de uma lista de itens.</p>
+          <ul class="lista">
+            <li>Faça as quatro partes na ordem, no mesmo arquivo.</li>
+            <li>Para testar outro pedido, troque a lista do início e execute de novo.</li>
+            <li>Mostre ao professor até qual parte você conseguiu fazer.</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/garcom.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 22 · PARTES 1 E 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Fechando a comanda · partes 1 e 2</p>
+    <h2>Mostrar a comanda e calcular o total</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt"><b>Mostrar a comanda.</b> Comece com <code>["pastel", "caldo", "pastel", "sorvete"]</code>. Mostre cada item numa linha e a quantidade de itens no final.</span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt"><b>Calcular o total.</b> Percorra a comanda e some o preço de cada item: pastel R$ 8,50, caldo R$ 6,00 e sorvete R$ 7,00. Guarde os preços em constantes.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 23 · PARTES 3 E 4 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Fechando a comanda · partes 3 e 4</p>
+    <h2>Item fora do cardápio e promoção</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">3</span><span class="txt"><b>Item fora do cardápio.</b> Se um item não estiver no cardápio, mostre um aviso com o nome dele: <code>coxinha não está no cardápio.</code> Esse item não entra na soma.</span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt"><b>Bônus.</b> Promoção do pastel: a partir do terceiro pastel da comanda, cada pastel custa R$ 7,00.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 24 · CASOS PARA CONFERIR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Confira com estes pedidos</h2>
+    <div class="miolo">
+      <table>
+        <thead><tr><th>Comanda</th><th>Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td><code>["pastel", "caldo", "pastel", "sorvete"]</code></td><td><code>4 itens</code> e <code>Total: R$ 30.00</code></td></tr>
+          <tr><td><code>["pastel", "coxinha", "caldo"]</code></td><td>o aviso da coxinha e <code>Total: R$ 14.50</code></td></tr>
+          <tr><td><code>["pastel", "pastel", "pastel", "pastel", "caldo"]</code></td><td><code>Total: R$ 37.00</code> com o bônus, <code>R$ 40.00</code> sem ele</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 25 · TICKET DE SAÍDA -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Ticket de saída · 10 minutos</p>
+    <h2>Antes de ir embora</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>ticket06_seunome.py</code> com a lista <code>["caldo", "pastel", "caldo"]</code>.</li>
+        <li>Use um <code>for</code> para mostrar cada item e contar os caldos da comanda.</li>
+        <li>No topo do arquivo, responda num comentário: o que o <code>continue</code> faz dentro do laço?</li>
+        <li>Execute e confira os três itens e, no fim, <code>Caldos: 2</code>.</li>
+        <li>Entregue o arquivo do jeito que o professor indicar.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 26 · RECAPITULAÇÃO -->
+<section class="slide escuro">
+  <div class="corpo">
+    <h2>O que vimos hoje</h2>
+    <ul class="recap">
+      <li><code>for item in lista:</code> repete o bloco uma vez para cada item. A variável recebe um item por volta.</li>
+      <li>O bloco do laço é o trecho recuado. O que fica sem recuo roda uma vez, depois do laço.</li>
+      <li>Usamos uma variável para contar itens e outra para somar preços. As duas começam em zero antes do laço.</li>
+      <li>O <code>continue</code> pula o resto da volta e passa para o próximo item.</li>
+      <li>Sem os dois-pontos, <code>SyntaxError</code>. Sem recuo, <code>IndentationError</code>. Sem o valor inicial, <code>NameError</code>.</li>
+    </ul>
+    <p class="proximo"><b>Amanhã, às 9h:</b> o <code>while</code>, para repetir até o cliente fechar o pedido, e um jogo de adivinhar o número.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+</div>
+<nav class="barra" id="barra"></nav>
+<script src="../assets/js/aulas.js"></script>
+<script src="../assets/js/slides.js"></script>
+</body>
+</html>

@@ -45,7 +45,7 @@ window.ENCONTROS = [
   { n:  5, data: "2026-11-07", etapa: 3, docente: "daniel", pronto: true,
     titulo: "Valores em dinheiro e primeiras listas",
     foco: "fim da Fechando a conta, round, f-string com :.2f, menu com aspas triplas, listas com índice, append, remove, in, len e sum" },
-  { n:  6, data: "2026-11-13", etapa: 4, docente: "daniel", pronto: false,
+  { n:  6, data: "2026-11-13", etapa: 4, docente: "daniel", pronto: true,
     titulo: "Retomada das listas e o laço for",
     foco: "atividade de retomada das listas, continuação das listas e o for percorrendo o pedido" },
   { n:  7, data: "2026-11-14", etapa: 4, docente: "daniel", pronto: false,
