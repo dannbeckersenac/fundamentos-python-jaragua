@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encontro 07 · O laço while, o break e o menu repetitivo · Fundamentos do Python I</title>
+<link rel="stylesheet" href="../assets/css/slides.css">
+<link rel="stylesheet" href="../assets/css/encontro.css">
+</head>
+<body data-encontro="7">
+<div class="palco">
+
+<!-- ===================== ABERTURA ===================== -->
+
+<!-- 1 · CAPA -->
+<section class="slide capa">
+  <img class="logo" src="../assets/img/senac.png" alt="Senac">
+  <div class="corpo">
+    <p class="numero">Encontro 07</p>
+    <h1>O laço while, o break e o menu repetitivo</h1>
+    <p class="sub">Vamos repetir perguntas com while e montar um menu que só fecha quando o cliente pedir.</p>
+  </div>
+  <img class="python" src="../assets/img/python-logo.svg" alt="">
+  <div class="rodape"><span>Etapa 4 · A repetição</span><span>Fundamentos do Python I · Senac Jaraguá do Sul</span></div>
+</section>
+
+<!-- 2 · AQUECIMENTO: TERMINAR A COMANDA -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Aquecimento · 20 minutos</p>
+    <h2>Terminar a comanda de ontem</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Abra o <code>comanda.py</code>, com as partes 1 e 2 feitas ontem.</li>
+        <li>Faça a parte 3: se um item não estiver no cardápio, mostre um aviso com o nome dele. Esse item não entra na soma.</li>
+        <li>Troque a lista por <code>["pastel", "coxinha", "caldo"]</code> e execute.</li>
+        <li>Confira <code>coxinha não está no cardápio.</code> e <code>Total: R$ 14.50</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 3 · AQUECIMENTO: O BÔNUS -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Aquecimento · bônus</p>
+    <h2>A promoção do pastel</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>No <code>comanda.py</code>, a partir do terceiro pastel, cada pastel custa R$ 7,00. Guarde esse preço numa constante.</li>
+        <li>Dentro do laço, conte os pastéis com um contador, como no exemplo de ontem.</li>
+        <li>Troque a lista por <code>["pastel", "pastel", "pastel", "pastel", "caldo"]</code> e execute.</li>
+        <li>Confira <code>Total: R$ 37.00</code>. Sem a promoção, seria R$ 40.00.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 4 · CORREÇÃO DA PARTE 3 -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Correção: o item fora do cardápio</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">trecho do comanda.py</div>
+<pre>total = <span class="num">0</span>
+<span class="kw">for</span> item <span class="kw">in</span> comanda:
+    <span class="kw">if</span> item == <span class="str">"pastel"</span>:
+        total = total + PRECO_PASTEL
+    <span class="kw">elif</span> item == <span class="str">"caldo"</span>:
+        total = total + PRECO_CALDO
+    <span class="kw">elif</span> item == <span class="str">"sorvete"</span>:
+        total = total + PRECO_SORVETE
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">f"{item} não está no cardápio."</span>)
+<span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)</pre>
+    </div>
+    <p class="dica">O <code>else</code> roda quando o item não é pastel, caldo nem sorvete. Nesse caso, o programa mostra o aviso e mantém o total.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 5 · CORREÇÃO DO BÔNUS -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Correção: a promoção do pastel</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">trecho do comanda.py, só o pastel</div>
+<pre>total = <span class="num">0</span>
+pasteis = <span class="num">0</span>
+<span class="kw">for</span> item <span class="kw">in</span> comanda:
+    <span class="kw">if</span> item == <span class="str">"pastel"</span>:
+        pasteis = pasteis + <span class="num">1</span>
+        <span class="kw">if</span> pasteis &gt;= <span class="num">3</span>:
+            total = total + PRECO_PASTEL_PROMO
+        <span class="kw">else</span>:
+            total = total + PRECO_PASTEL</pre>
+    </div>
+    <ul class="lista">
+      <li>O contador aumenta antes do teste. No terceiro pastel, <code>pasteis</code> já vale <code>3</code>.</li>
+      <li>Mantenha os <code>elif</code> do caldo e do sorvete e o <code>else</code> do aviso abaixo desse trecho, no mesmo recuo do primeiro <code>if</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 1 · O WHILE ===================== -->
+
+<!-- 6 · MONTAR O PEDIDO -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Revisão · 15 minutos</p>
+    <h2>Montar o pedido</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>pedido.py</code>. Pode aproveitar o que já fez no <code>conta.py</code>.</li>
+        <li>Mostre o cardápio com aspas triplas: pastel R$ 8,50, caldo de cana R$ 6,00 e sorvete R$ 7,00.</li>
+        <li>Pergunte quantos pastéis, quantos caldos e quantos sorvetes o cliente quer, com <code>int(input())</code>.</li>
+        <li>Calcule o total e mostre com duas casas decimais.</li>
+        <li>Teste 2 pastéis, 1 caldo e 0 sorvete. Confira <code>Total: R$ 23.00</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 7 · CORREÇÃO DO PEDIDO -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Correção: o pedido</h2>
+    <div class="janelas dir-larga">
+      <div class="codigo idle compacto">
+        <div class="arquivo">pedido.py · o cardápio</div>
+<pre>PRECO_PASTEL = <span class="num">8.5</span>
+PRECO_CALDO = <span class="num">6.0</span>
+PRECO_SORVETE = <span class="num">7.0</span>
+<span class="fn">print</span>(<span class="str">"""
+1 - Pastel ......... R$ 8,50
+2 - Caldo de cana .. R$ 6,00
+3 - Sorvete ........ R$ 7,00
+"""</span>)</pre>
+      </div>
+      <div class="codigo idle compacto">
+        <div class="arquivo">pedido.py · as quantidades e o total</div>
+<pre>pasteis = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+caldos = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos caldos? "</span>))
+sorvetes = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos sorvetes? "</span>))
+total = pasteis * PRECO_PASTEL
+total = total + caldos * PRECO_CALDO
+total = total + sorvetes * PRECO_SORVETE
+<span class="fn">print</span>(<span class="str">f"Total: R$ {total:.2f}"</span>)</pre>
+      </div>
+    </div>
+    <p class="dica">Os dois blocos ficam no mesmo arquivo: primeiro o cardápio, depois as quantidades e o total.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 8 · PERGUNTA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/duvida.png" alt="">
+        <div>
+          <p>E se o cliente digitar -2 pastéis?</p>
+          <p>O programa aceita, faz a conta e mostra um total negativo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 9 · O IF AVISA UMA VEZ SÓ -->
+<section class="slide">
+  <div class="corpo">
+    <h2>O if avisa uma vez só</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">trecho do pedido.py</div>
+<pre>pasteis = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+<span class="kw">if</span> pasteis &lt; <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">"Quantidade inválida."</span>)
+caldos = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos caldos? "</span>))</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">Quantos pastéis? </span>-2
+<span class="saida">Quantidade inválida.</span>
+<span class="saida">Quantos caldos? </span>1
+<span class="saida">Quantos sorvetes? </span>0
+<span class="saida">Total: R$ -11.00</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>O <code>if</code> mostrou o aviso. Depois, o programa seguiu com o <code>-2</code> e calculou um total negativo.</li>
+      <li>Zero é válido: o cliente pode não querer algum produto. Se digitar um número negativo, o programa precisa perguntar de novo.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 10 · FLUXOGRAMA DO WHILE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Quando perguntar de novo?</h2>
+    <div class="miolo">
+      <div class="fluxograma">
+        <svg viewBox="0 0 1152 380" role="img" aria-label="Fluxograma: perguntar os pastéis; enquanto for negativa, avisar e perguntar de novo; depois, perguntar os caldos">
+          <defs>
+            <marker id="seta-while" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+            </marker>
+          </defs>
+          <rect class="caixa" x="0" y="130" width="180" height="84" rx="8"/>
+          <text x="90" y="165">perguntar</text>
+          <text x="90" y="196">os pastéis</text>
+          <path class="seta" d="M180,172 H214" marker-end="url(#seta-while)"/>
+          <polygon class="decisao" points="220,172 395,82 570,172 395,262"/>
+          <text x="395" y="166">A quantidade</text>
+          <text x="395" y="198">é negativa?</text>
+          <path class="seta" d="M570,172 H620" marker-end="url(#seta-while)"/>
+          <text class="rotulo" x="595" y="158">sim</text>
+          <rect class="caixa" x="626" y="136" width="250" height="72" rx="8"/>
+          <text x="751" y="181">avisar o cliente</text>
+          <path class="seta" d="M876,172 H916" marker-end="url(#seta-while)"/>
+          <rect class="caixa" x="922" y="136" width="230" height="72" rx="8"/>
+          <text x="1037" y="181">perguntar de novo</text>
+          <path class="seta" d="M1037,136 V44 H395 V76" marker-end="url(#seta-while)"/>
+          <text class="rotulo" x="716" y="32">volta e testa de novo</text>
+          <path class="seta" d="M395,262 V304" marker-end="url(#seta-while)"/>
+          <text class="rotulo" x="425" y="292">não</text>
+          <rect class="caixa" x="260" y="310" width="270" height="64" rx="8"/>
+          <text x="395" y="351">perguntar os caldos</text>
+        </svg>
+      </div>
+      <p class="dica">Com um número negativo, a pergunta volta. Com zero ou mais, o programa segue para os caldos.</p>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 11 · O WHILE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Repetir a pergunta com while</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · trecho do pedido.py</div>
+<pre>pasteis = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+<span class="kw">while</span> pasteis &lt; <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">"Quantidade inválida."</span>)
+    pasteis = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+caldos = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos caldos? "</span>))</pre>
+    </div>
+    <ul class="lista">
+      <li><code>while</code> quer dizer enquanto. O bloco repete enquanto a condição der <code>True</code>.</li>
+      <li>A condição é testada antes de cada volta. Com <code>2</code>, ela dá <code>False</code> e o programa segue para os caldos.</li>
+      <li>O <code>input</code> dentro do laço lê uma nova quantidade. Se ela for zero ou maior, o laço termina.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 12 · MÃO NA MASSA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Testar o while</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <ol class="passos">
+            <li>No <code>pedido.py</code>, mantenha a pergunta dos pastéis e acrescente o <code>while</code> logo abaixo, como no exemplo.</li>
+            <li>Execute o arquivo: ▶ no VS Code, F5 no IDLE.</li>
+            <li>Digite <code>-2</code> nos pastéis. Confira <code>Quantidade inválida.</code> e a pergunta de novo.</li>
+            <li>Digite <code>2</code> nos pastéis, <code>1</code> no caldo e <code>0</code> no sorvete.</li>
+            <li>Confira <code>Total: R$ 23.00</code>.</li>
+          </ol>
+          <p class="dica">Depois, acrescente um <code>while</code> para validar os caldos e outro para os sorvetes.</p>
+        </div>
+        <img src="../assets/img/icones/notebook-codigo.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 13 · O LAÇO QUE NÃO PARA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>E se nada mudar dentro do laço?</h2>
+    <div class="janelas">
+      <div class="codigo idle compacto">
+        <div class="arquivo">pedido.py, sem a pergunta no laço</div>
+<pre>pasteis = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Quantos pastéis? "</span>))
+<span class="kw">while</span> pasteis &lt; <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">"Quantidade inválida."</span>)</pre>
+      </div>
+      <div class="codigo idle shell compacto">
+        <div class="arquivo">Saída</div>
+<pre><span class="saida">Quantos pastéis? </span>-2
+<span class="saida">Quantidade inválida.</span>
+<span class="saida">Quantidade inválida.</span>
+<span class="saida">Quantidade inválida.</span>
+<span class="erro">KeyboardInterrupt</span></pre>
+      </div>
+    </div>
+    <ul class="lista">
+      <li>Nada no laço muda <code>pasteis</code>. A condição dá <code>True</code> para sempre.</li>
+      <li>Para interromper, aperte <b>Ctrl+C</b> no terminal ou no shell. Aparece <code>KeyboardInterrupt</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 14 · FOR OU WHILE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>for ou while?</h2>
+    <div class="miolo">
+      <div class="cartoes n2">
+        <div class="cartao"><img src="../assets/img/icones/checklist.png" alt=""><span class="t">for</span><span class="d">Percorre uma lista. Repete uma vez para cada item e para quando os itens acabam.</span><p><code>for item in comanda:</code></p></div>
+        <div class="cartao"><img src="../assets/img/icones/engrenagens.png" alt=""><span class="t">while</span><span class="d">Repete enquanto a condição for verdadeira. Aqui, pergunta até receber uma quantidade válida.</span><p><code>while pasteis &lt; 0:</code></p></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 15 · PRÁTICA DO CICLO 1 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 15 minutos</p>
+    <h2>Anotar a comanda até digitar fim</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>anota_varios.py</code> começando com uma lista vazia.</li>
+        <li>Peça o primeiro item com <code>input("Item (ou fim): ")</code>.</li>
+        <li>Enquanto o item for diferente de <code>"fim"</code>, acrescente-o à lista e pergunte de novo.</li>
+        <li>Depois do laço, mostre a comanda e quantos itens ela tem.</li>
+        <li>Teste <code>pastel</code>, <code>caldo</code>, <code>pastel</code> e <code>fim</code>. Confira <code>3 itens</code>.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 16 · CORREÇÃO DO CICLO 1 -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Correção: anotar até digitar fim</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">anota_varios.py</div>
+<pre>comanda = []
+item = <span class="fn">input</span>(<span class="str">"Item (ou fim): "</span>)
+<span class="kw">while</span> item != <span class="str">"fim"</span>:
+    comanda.append(item)
+    item = <span class="fn">input</span>(<span class="str">"Item (ou fim): "</span>)
+<span class="fn">print</span>(<span class="str">f"Comanda: {comanda}"</span>)
+<span class="fn">print</span>(<span class="str">f"{len(comanda)} itens"</span>)</pre>
+    </div>
+    <ul class="lista">
+      <li>A pergunta aparece duas vezes: antes do laço e no fim do bloco, como no exemplo dos pastéis.</li>
+      <li>Ao digitar <code>fim</code>, a condição dá <code>False</code> e o laço termina. Esse texto não entra na lista.</li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== CICLO 2 · BREAK E O JOGO ===================== -->
+
+<!-- 17 · PERGUNTA -->
+<section class="slide">
+  <div class="corpo">
+    <div class="miolo">
+      <div class="pergunta">
+        <img src="../assets/img/icones/pessoa-duvida.png" alt="">
+        <div>
+          <p>A lanchonete sorteou um número de 1 a 20. Quem acertar ganha um caldo. Quantos palpites o cliente vai dar?</p>
+          <p>O programa precisa pedir palpites até ele acertar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 18 · RANDOM -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Sortear um número com random</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <div class="codigo idle shell">
+            <div class="arquivo">Terminal ou IDLE Shell</div>
+<pre><span class="pr">&gt;&gt;&gt; </span><span class="kw">import</span> random
+<span class="pr">&gt;&gt;&gt; </span>random.randint(<span class="num">1</span>, <span class="num">20</span>)
+<span class="saida">12</span>
+<span class="pr">&gt;&gt;&gt; </span>random.randint(<span class="num">1</span>, <span class="num">20</span>)
+<span class="saida">20</span></pre>
+          </div>
+          <ul class="lista">
+            <li><code>import random</code> permite usar os sorteios do módulo <code>random</code>. Um módulo reúne código pronto para usar.</li>
+            <li><code>random.randint(1, 20)</code> sorteia um inteiro de 1 a 20, com o 1 e o 20 incluídos.</li>
+            <li>No seu computador, o sorteio pode dar outros números.</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/alvo.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 19 · BREAK -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Encerrar o laço com break</h2>
+    <div class="codigo idle compacto">
+      <div class="arquivo">exemplo do professor · adivinha.py</div>
+<pre><span class="kw">import</span> random
+secreto = random.randint(<span class="num">1</span>, <span class="num">20</span>)
+<span class="kw">while</span> <span class="kw">True</span>:
+    palpite = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Seu palpite: "</span>))
+    <span class="kw">if</span> palpite == secreto:
+        <span class="fn">print</span>(<span class="str">"Acertou! Ganhou um caldo."</span>)
+        <span class="kw">break</span>
+    <span class="fn">print</span>(<span class="str">"Errou. Tente de novo."</span>)</pre>
+    </div>
+    <ul class="lista">
+      <li>Em <code>while True</code>, a condição é sempre verdadeira. Neste exemplo, o <code>break</code> encerra o laço quando o cliente acerta.</li>
+      <li>Ao passar pelo <code>break</code>, o programa sai do laço sem mostrar <code>Errou. Tente de novo.</code></li>
+    </ul>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 20 · MÃO NA MASSA -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Testar o jogo</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <ol class="passos">
+            <li>Crie <code>adivinha.py</code> com o código do exemplo.</li>
+            <li>Para testar, troque a linha do sorteio por <code>secreto = 12</code>.</li>
+            <li>Execute e digite <code>5</code>. Confira <code>Errou. Tente de novo.</code></li>
+            <li>Digite <code>12</code> e confira <code>Acertou! Ganhou um caldo.</code></li>
+          </ol>
+          <p class="dica">Depois do teste, restaure a linha com <code>random.randint</code> para voltar a sortear.</p>
+        </div>
+        <img src="../assets/img/icones/notebook-codigo.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 21 · PRÁTICA DO CICLO 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Prática · 15 minutos</p>
+    <h2>Melhorar o jogo</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Depois de cada erro, mostre <code>O número é maior.</code> ou <code>O número é menor.</code></li>
+        <li>Conte as tentativas. Ao acertar, mostre quantas foram, como em <code>Acertou em 3 tentativas.</code></li>
+        <li>Bônus: limite o jogo a 5 tentativas. Se o cliente errar a quinta, mostre o número sorteado e encerre o laço.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- ===================== ATIVIDADE: O MENU DO PEDIDO ===================== -->
+
+<!-- 22 · A ATIVIDADE DE HOJE -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Atividade: o menu do pedido</h2>
+    <div class="miolo">
+      <div class="lado-icone">
+        <div>
+          <p class="intro">Crie <code>menu_pedido.py</code>. O cliente vai escolher os itens pelo menu e decidir quando fechar o pedido.</p>
+          <ul class="lista">
+            <li>Este programa é a base do desafio final.</li>
+            <li>Faça as quatro partes na ordem, no mesmo arquivo.</li>
+            <li>Mostre ao professor até qual parte você conseguiu fazer.</li>
+          </ul>
+        </div>
+        <img src="../assets/img/icones/cardapio.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 23 · PARTES 1 E 2 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">O menu do pedido · partes 1 e 2</p>
+    <h2>O menu que repete</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">1</span><span class="txt"><b>Repetir o menu.</b> Mostre o menu com aspas triplas: 1 Pastel, 2 Caldo de cana, 3 Sorvete e 0 Fechar pedido. Repita até o cliente escolher 0. Ao sair, mostre <code>Pedido fechado.</code></span></div>
+        <div class="tarefa"><span class="n">2</span><span class="txt"><b>Anotar os itens.</b> Guarde numa lista os itens escolhidos nas opções 1, 2 e 3. Para uma opção fora do menu, mostre <code>Opção inválida.</code> e exiba o menu de novo.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 24 · PARTES 3 E 4 -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">O menu do pedido · partes 3 e 4</p>
+    <h2>A conta e o item retirado</h2>
+    <div class="miolo">
+      <div class="tarefas">
+        <div class="tarefa"><span class="n">3</span><span class="txt"><b>Fechar a conta.</b> Depois do laço, mostre cada item da comanda e o total com duas casas decimais. Pastel R$ 8,50, caldo R$ 6,00 e sorvete R$ 7,00. Se a comanda estiver vazia, mostre <code>Nenhum item no pedido.</code></span></div>
+        <div class="tarefa"><span class="n">4</span><span class="txt"><b>Bônus.</b> Acrescente a opção 4 para retirar um item. Peça o nome e remova-o da comanda. Se ele não estiver na lista, mostre <code>Esse item não está na comanda.</code></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 25 · CASOS PARA CONFERIR -->
+<section class="slide">
+  <div class="corpo">
+    <h2>Confira com estes pedidos</h2>
+    <div class="miolo">
+      <table>
+        <thead><tr><th>Opções digitadas</th><th>Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td><code>1</code>, <code>1</code>, <code>2</code>, <code>0</code></td><td>pastel, pastel, caldo e <code>Total: R$ 23.00</code></td></tr>
+          <tr><td><code>3</code>, <code>9</code>, <code>2</code>, <code>0</code></td><td><code>Opção inválida.</code> uma vez e <code>Total: R$ 13.00</code></td></tr>
+          <tr><td><code>0</code></td><td><code>Nenhum item no pedido.</code></td></tr>
+          <tr><td>Bônus: <code>1</code>, <code>2</code>, <code>4</code>, <code>caldo</code>, <code>0</code></td><td>só o pastel e <code>Total: R$ 8.50</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 26 · TICKET DE SAÍDA -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Ticket de saída · 10 minutos</p>
+    <h2>Antes de ir embora</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Crie <code>ticket07_seunome.py</code> e pergunte quantos caldos o cliente quer.</li>
+        <li>Repita a pergunta enquanto o número for menor que 1 ou maior que 10.</li>
+        <li>Mostre o total, com o caldo a R$ 6,00.</li>
+        <li>No topo do arquivo, responda num comentário: quando usar o <code>for</code> e quando usar o <code>while</code>?</li>
+        <li>Teste <code>0</code>, <code>15</code> e <code>3</code>. Confira <code>Total: R$ 18.00</code> antes de entregar.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 27 · PARA CASA -->
+<section class="slide exercicio">
+  <div class="corpo">
+    <p class="eyebrow">Para casa · até o próximo encontro</p>
+    <h2>Terminar o menu do pedido</h2>
+    <div class="miolo">
+      <ol class="passos">
+        <li>Termine o <code>menu_pedido.py</code>, pelo menos até a parte 3.</li>
+        <li>Teste com três pedidos diferentes. Um deles com uma opção inválida no menu.</li>
+        <li>Anote num comentário no topo do arquivo as opções digitadas e o total de cada pedido.</li>
+        <li>Traga o arquivo no próximo encontro para conferirmos antes do desafio final.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+<!-- 28 · RECAPITULAÇÃO -->
+<section class="slide escuro">
+  <div class="corpo">
+    <h2>O que vimos hoje</h2>
+    <ul class="recap">
+      <li><code>while condição:</code> repete o bloco enquanto a condição der <code>True</code>.</li>
+      <li>Algo dentro do laço precisa mudar a condição. Senão o laço não para, e o Ctrl+C interrompe.</li>
+      <li>O <code>break</code> encerra o laço assim que é executado, como no acerto do jogo.</li>
+      <li><code>import random</code> e <code>random.randint(1, 20)</code> sorteiam um número de 1 a 20.</li>
+      <li>O <code>for</code> percorre os itens da lista. O <code>while</code> testa uma condição a cada volta.</li>
+    </ul>
+    <p class="proximo"><b>Próximo encontro:</b> o desafio final. Você recebe o enunciado do sistema de pedidos e desenvolve o programa em sala, individualmente.</p>
+  </div>
+  <div class="rodape"></div>
+</section>
+
+</div>
+<nav class="barra" id="barra"></nav>
+<script src="../assets/js/aulas.js"></script>
+<script src="../assets/js/slides.js"></script>
+</body>
+</html>

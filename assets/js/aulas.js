@@ -48,7 +48,7 @@ window.ENCONTROS = [
   { n:  6, data: "2026-11-13", etapa: 4, docente: "daniel", pronto: true,
     titulo: "Retomada das listas e o laço for",
     foco: "atividade de retomada das listas, continuação das listas e o for percorrendo o pedido" },
-  { n:  7, data: "2026-11-14", etapa: 4, docente: "daniel", pronto: false,
+  { n:  7, data: "2026-11-14", etapa: 4, docente: "daniel", pronto: true,
     titulo: "O laço while, o break e o menu repetitivo",
     foco: "while, break, menu repetitivo, jogo de adivinhar o número" },
   { n:  8, data: "2026-11-27", etapa: 5, docente: "daniel", pronto: false, recuperacao: true,

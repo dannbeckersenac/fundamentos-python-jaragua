@@ -170,6 +170,8 @@
 /* duas janelas lado a lado */
 .janelas { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
 .janelas .codigo { margin: 0; }
+/* a janela da direita mais larga, quando a da esquerda tem linhas curtas */
+.janelas.dir-larga { grid-template-columns: 5fr 7fr; }
 
 /* saída de um programa, como aparece no shell depois do F5 */
 .legenda-janela { font-size: 23px; color: #5B6678; margin: 0 0 8px; }
